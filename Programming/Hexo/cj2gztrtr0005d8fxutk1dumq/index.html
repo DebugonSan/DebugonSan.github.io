@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://debugon.git.io/Programming/Hexo/cj2gztrtr0005d8fxutk1dumq/index.html">
 <meta property="og:site_name" content="名前はまだ無い。">
 <meta property="og:description" content="今回は本ブログを立ち上げるためにGitとHexoについて学びましたので忘れないうちに書いておこうと思います。GitHub PagesとHexoを用いてブログを作るところまで行こうと考えていますが、長くなりそうであれば別の記事に分けると思います。 HexoとはHexoとは前回の記事でも触れましたが、静的サイトジェネレータの一つです。静的サイトジェネレータを用いることで静的ファイル(html、css、">
-<meta property="og:updated_time" content="2017-04-27T22:25:05.465Z">
+<meta property="og:updated_time" content="2017-05-09T05:16:49.504Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub PagesとHexoで作る静的サイトブログ">
 <meta name="twitter:description" content="今回は本ブログを立ち上げるためにGitとHexoについて学びましたので忘れないうちに書いておこうと思います。GitHub PagesとHexoを用いてブログを作るところまで行こうと考えていますが、長くなりそうであれば別の記事に分けると思います。 HexoとはHexoとは前回の記事でも触れましたが、静的サイトジェネレータの一つです。静的サイトジェネレータを用いることで静的ファイル(html、css、">
@@ -133,12 +133,12 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$hexo init ブログ名</div><div class="line">$cd ブログ名</div><div class="line">$npm install</div><div class="line">$hexo server</div></pre></td></tr></table></figure>
 <p>実行してみるとlocalhost:4000に作成したブログを見ることができます。<br>ただし現段階ではまだテーマを導入していないので、宇宙を背景にブログ名が表示されているだけだと思います。<br>このままでは寂しいので新しい記事を追加してみましょう。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$hexo new 記事名</div></pre></td></tr></table></figure>
-<p>こちらのコマンドで記事が<code>ブログ名/source/_post/記事名.md</code>といった形で生成されます。<br>しかしファイル名に日本語を用いるのはいろいろとアウトなのでできれば<strong>英語で生成する</strong>のが望ましいです。(本記事は<code>hexo-setup.md</code>で作っています)<br>生成されたファイルを開くと・・・</p>
+<p>こちらのコマンドで記事が<code>ブログ名\source\_post\記事名.md</code>といった形で生成されます。<br>しかしファイル名に日本語を用いるのはいろいろとアウトなのでできれば<strong>英語で生成する</strong>のが望ましいです。(本記事は<code>hexo-setup.md</code>で作っています)<br>生成されたファイルを開くと・・・</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: 記事名</div><div class="line">date: YYYY-MM-DD HH:mm:ss</div><div class="line">tags:</div><div class="line">---</div></pre></td></tr></table></figure>
 <p>となっていますので、<code>title</code>を適宜編集してください。<br>また、本文は下の空欄部分(- - -、以下)に<strong>マークダウン</strong>で記入していくことになります。<br>書き終わったら保存して<code>hexo server</code>で先ほど同様、localhost:4000で確認できます。<br>書き始める前に実行しておけば、プレビューしながら編集することもできるのでオススメです。</p>
 <p>それでは最後に<strong>GitHub Pages</strong>で公開する手順を説明します。</p>
 <h2 id="GitHub-Pagesで公開する"><a href="#GitHub-Pagesで公開する" class="headerlink" title="GitHub Pagesで公開する"></a>GitHub Pagesで公開する</h2><p>Github Pagesで公開するにはまずGitHubに専用のレポジトリを作成。<br>そのレポジトリにHexoでデプロイするといった流れになります。</p>
-<p>さくっと<code>ユーザー名.github.io</code>という名前のレポジトリをGitHubに作ります。<br>この時に<strong>README.mdを追加しない</strong>ほうが、すぐに<strong>https</strong>か<strong>ssh</strong>をコピーできますのでオススメです。(作ってしまった場合は<code>clone or download</code>から見ることができます)<br>作成できたら<code>ブログ名/_config.yml</code>を開いて、対象の部分を以下のように修正・追加します。<br>ソースまるまる載せるわけにもいかないので、<strong>変更部分のみ抜粋</strong>しています。</p>
+<p>さくっと<code>ユーザー名.github.io</code>という名前のレポジトリをGitHubに作ります。<br>この時に<strong>README.mdを追加しない</strong>ほうが、すぐに<strong>https</strong>か<strong>ssh</strong>をコピーできますのでオススメです。(作ってしまった場合は<code>clone or download</code>から見ることができます)<br>作成できたら<code>ブログ名\_config.yml</code>を開いて、対象の部分を以下のように修正・追加します。<br>ソースまるまる載せるわけにもいかないので、<strong>変更部分のみ抜粋</strong>しています。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"># Site</div><div class="line">title: ブログ名</div><div class="line">language: en</div><div class="line">timezone: Asia/Tokyo</div><div class="line"></div><div class="line"># URL</div><div class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</div><div class="line">url: http://ユーザー名.git.io</div><div class="line">root: /</div><div class="line"></div><div class="line"># Deployment</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: git@github.com:ユーザー名/ユーザー名.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
 <p><code>language: en</code>にしているのはHexoのテーマの大体が日本語に対応していないからです。<br>デフォルトで中国語に設定されているテーマですとブログが漢字だらけになってしまうので、英語を選択しています。<br><code>repo:</code>以下は先ほど作ったレポジトリの<strong>https</strong>か<strong>ssh</strong>を入力してください。<br>Hexo 3.x系からは<code>type:</code>で<strong>github</strong>ではなく<strong>git</strong>を選択しているので注意してください。<br>変更が終わったら上書き保存して、コマンドラインに戻ってください。</p>
 <p>次にHexoにサービスにGitをデプロイするためのプラグインをインストールして、実際にGitHub上に作ったサイトを公開します。</p>
@@ -148,6 +148,7 @@
 <p>この一行で<code>$hexo generate</code>と<code>$hexo deploy</code>をしています。<br>他にもローカルで建てる時の<code>hexo server</code>が<code>hexo s</code>に略せたりできたので、気になる方は公式のドキュメントを覗いてみると良いかもしれません。</p>
 <h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>次の更新は<strong>テーマの変更</strong>についてやりたいと考えています。<br>また<code>_config.yml</code>についても触れられたらいいかと思っていますので、よろしくお願いします。</p>
 <font color="White">ブログ名もしっくりこないし、Hexoを弄りきれていないから当分はHexoの話題になりますね。</font><br><font color="White">というか記事書いていたら零時すぎてしまったんじゃが・・・</font>
+
       
     </div>
     <footer class="article-footer">
