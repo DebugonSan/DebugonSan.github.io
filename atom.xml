@@ -74,7 +74,7 @@
     <link href="http://debugon.git.io/Programming/Hexo/cj2in4qw00001ukfx0840w59l/"/>
     <id>http://debugon.git.io/Programming/Hexo/cj2in4qw00001ukfx0840w59l/</id>
     <published>2017-04-27T10:39:12.000Z</published>
-    <updated>2017-05-09T05:16:49.504Z</updated>
+    <updated>2017-05-16T08:27:07.988Z</updated>
     
     <content type="html"><![CDATA[<p>今回は本ブログを立ち上げるためにGitとHexoについて学びましたので忘れないうちに書いておこうと思います。<br>GitHub PagesとHexoを用いてブログを作るところまで行こうと考えていますが、長くなりそうであれば別の記事に分けると思います。</p>
 <h2 id="Hexoとは"><a href="#Hexoとは" class="headerlink" title="Hexoとは"></a>Hexoとは</h2><p>Hexoとは前回の記事でも触れましたが、<strong>静的サイトジェネレータ</strong>の一つです。<br>静的サイトジェネレータを用いることで静的ファイル(html、css、javascript)で叩き出してくれる代物で、その中でもHexoはブログに特化していると言われています。<br>私は<strong>ヘキオ</strong>と呼んでますが<strong>ヘクソ</strong>や<strong>ヘキソ</strong>とも呼ばれているようです。<br>使うには<strong>node.js</strong>でインストールし、コマンドラインで記事の作成やGitを使ってブログをサーバーにデプロイすることになります。</p>
@@ -138,7 +138,7 @@
     <link href="http://debugon.git.io/Blog/cj2in4qwg0005ukfx8cf9uju0/"/>
     <id>http://debugon.git.io/Blog/cj2in4qwg0005ukfx8cf9uju0/</id>
     <published>2017-04-24T18:41:14.000Z</published>
-    <updated>2017-04-27T16:56:44.733Z</updated>
+    <updated>2017-05-16T08:27:07.966Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Github-PagesとHexoを使ってブログを立ててみた"><a href="#Github-PagesとHexoを使ってブログを立ててみた" class="headerlink" title="Github PagesとHexoを使ってブログを立ててみた"></a>Github PagesとHexoを使ってブログを立ててみた</h1><p>初めまして、でぶごんです。<br>マークダウンによる記述はちょっと慣れていないので、今回は挨拶程度で勘弁してください。</p>
 <p>ブログを立てることになったのですが、<strong>はてなブログ</strong>や<strong>Qiita</strong>、<strong>WordPress</strong>等、色々あると思ます。<br>正直立てた今でもはてなブログで妥協しておけばよかったのではと思っていますが、Hexoで作ったページをGitHub Pages（以下GitHub）で公開するという形にしました。  </p>

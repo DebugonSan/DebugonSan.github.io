@@ -3,17 +3,17 @@
 
     <sitemap>
         <loc>http://debugon.git.io/post-sitemap.xml</loc>
-        <lastmod>2017-05-16T08:02:54.796Z</lastmod>
+        <lastmod>2017-05-16T08:27:07.988Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://debugon.git.io/category-sitemap.xml</loc>
-        <lastmod>2017-04-27T16:56:44.733Z</lastmod>
+        <lastmod>2017-05-16T08:27:07.966Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://debugon.git.io/tag-sitemap.xml</loc>
-        <lastmod>2017-04-27T16:56:44.733Z</lastmod>
+        <lastmod>2017-05-16T08:27:07.966Z</lastmod>
     </sitemap>
 
 </sitemapindex>

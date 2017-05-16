@@ -7,16 +7,8 @@
     </url>
 
     <url>
-        <loc>http://debugon.git.io/Programming/Hexo/cj2in4qw00002ukfx2f2i4bst/</loc>
-        <lastmod>2017-05-16T08:02:54.796Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://debugon.git.io/Programming/Hexo/cj2in4qw00001ukfx0840w59l/</loc>
-        <lastmod>2017-05-09T05:16:49.504Z</lastmod>
+        <lastmod>2017-05-16T08:27:07.988Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -24,7 +16,15 @@
 
     <url>
         <loc>http://debugon.git.io/Blog/cj2in4qwg0005ukfx8cf9uju0/</loc>
-        <lastmod>2017-04-27T16:56:44.733Z</lastmod>
+        <lastmod>2017-05-16T08:27:07.966Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://debugon.git.io/Programming/Hexo/cj2in4qw00002ukfx2f2i4bst/</loc>
+        <lastmod>2017-05-16T08:02:54.796Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
