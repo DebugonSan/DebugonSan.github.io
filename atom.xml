@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://debugon.git.io/"/>
-  <updated>2017-05-09T06:14:57.812Z</updated>
+  <updated>2017-05-16T08:02:54.796Z</updated>
   <id>http://debugon.git.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://debugon.git.io/Programming/Hexo/cj2in4qw00002ukfx2f2i4bst/"/>
     <id>http://debugon.git.io/Programming/Hexo/cj2in4qw00002ukfx2f2i4bst/</id>
     <published>2017-05-09T02:42:11.000Z</published>
-    <updated>2017-05-09T06:14:57.812Z</updated>
+    <updated>2017-05-16T08:02:54.796Z</updated>
     
     <content type="html"><![CDATA[<p>予告通り、Hexoで作成したブログにテーマを設定したいと思います。<br>Hexoでブログを作った方ならにお気づきになると思いますが、当ブログもデフォルトのテーマから変更しています。</p>
 <h2 id="Hexoで作成したブログにテーマを設定する流れ"><a href="#Hexoで作成したブログにテーマを設定する流れ" class="headerlink" title="Hexoで作成したブログにテーマを設定する流れ"></a>Hexoで作成したブログにテーマを設定する流れ</h2><p>全体的な流れとしては・・・</p>
@@ -35,7 +35,7 @@
 <p>今回は<a href="https://github.com/hexojs/hexo-theme-light" target="_blank" rel="external">こちら</a>のLightテーマを使います。</p>
 <p><img src="..\..\..\img\hexo_theme_light.png"></p>
 <h3 id="2-テーマをcloneする"><a href="#2-テーマをcloneする" class="headerlink" title="2. テーマをcloneする"></a>2. テーマをcloneする</h3><p>欲しいテーマを見つけたら、以下のコマンドでローカルの<code>ブログ名\themes\</code>にcloneします。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$git clone https://github.com/hexojs/hexo-theme-light.git themes/light</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$git clone https://github.com/hexojs/hexo-theme-light.git themes\light</div></pre></td></tr></table></figure>
 <p>うまくいけば<code>ブログ名\themes\</code>に<code>light</code>というディレクトリが生成されているはずです。</p>
 <h3 id="3-config-ymlに設定する"><a href="#3-config-ymlに設定する" class="headerlink" title="3. _config.ymlに設定する"></a>3. <code>_config.yml</code>に設定する</h3><p>最後に<code>_config.yml</code>にテーマを設定して終わりです。<br>以下のように<code>_congig.yml</code>を開いて、該当箇所を変更します。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Extensions</div><div class="line">## Plugins: https://hexo.io/plugins/</div><div class="line">## Themes: https://hexo.io/themes/</div><div class="line">theme: light</div></pre></td></tr></table></figure>
