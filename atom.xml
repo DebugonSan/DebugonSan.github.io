@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://debugon.git.io/"/>
-  <updated>2017-05-18T16:45:43.488Z</updated>
+  <updated>2017-05-18T16:46:55.848Z</updated>
   <id>http://debugon.git.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://debugon.git.io/Programming/Hexo/cj2unbku70006fkfxgezcnvvp/"/>
     <id>http://debugon.git.io/Programming/Hexo/cj2unbku70006fkfxgezcnvvp/</id>
     <published>2017-05-18T11:53:31.000Z</published>
-    <updated>2017-05-18T16:45:43.488Z</updated>
+    <updated>2017-05-18T16:46:55.848Z</updated>
     
     <content type="html"><![CDATA[<p>前回はHexoで作成したブログにテーマを設定する話をしました。<br>今回は<strong>フィード</strong>なるものをブログに設定していきたいと考えています。<br>というのも当ブログに設定しているテーマに、フィードアイコンが設置されていたためです。</p>
 <h2 id="とりまフィードってなんぞよ"><a href="#とりまフィードってなんぞよ" class="headerlink" title="とりまフィードってなんぞよ"></a>とりまフィードってなんぞよ</h2><p>私はブログ等ウェブサイトを作成・公開したことがないので、フィードと呼ばれる存在がなんなのか知りませんでした。<br>Wikipediaによると・・・</p>
@@ -41,7 +41,7 @@
 <h3 id="実際に確認してみる"><a href="#実際に確認してみる" class="headerlink" title="実際に確認してみる"></a>実際に確認してみる</h3><p><img src="..\..\..\img\hexo_feed.png"></p>
 <p>どうやらうまくいってるみたいですね。</p>
 <h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>フィードリーダーを使ったことがないのでフィードの需要があるのかわかりませんが、クリックしたらNot Found出されたので設定しました。<br>次回はサイトマップなるもについて調べて実装したいと考えています。<br>もしかしたら普通にイヤホンのレビューもとい紹介記事を書くかもしれません。</p>
-<font color="White">AliexpressのNiceHCKというところでDZX 1+6というイヤホンをオーダーしたのですが、まだ発送連絡がこなくて怖い・・・</font><br><font color="White">インプレッションが無効についてから６週間は待ったみたいな話を聞いたので気長に待つことにしました</font>
+<font color="White">AliexpressのNiceHCKというところでDZX 1+6というイヤホンをオーダーしたのですが、まだ発送連絡がこなくて怖い・・・</font><br><font color="White">インプレッションが無効についてから６週間は待ったみたいな話を聞いたので気長に待つことにします</font>
 
 <!--
 <img src="..\..\..\img\" />
