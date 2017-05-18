@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://debugon.git.io/"/>
-  <updated>2017-05-16T08:02:54.796Z</updated>
+  <updated>2017-05-18T16:43:44.180Z</updated>
   <id>http://debugon.git.io/</id>
   
   <author>
@@ -16,9 +16,61 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Hexoで作成したブログにフィードを設定する話</title>
+    <link href="http://debugon.git.io/Programming/Hexo/cj2unbku70006fkfxgezcnvvp/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj2unbku70006fkfxgezcnvvp/</id>
+    <published>2017-05-18T11:53:31.000Z</published>
+    <updated>2017-05-18T16:43:44.180Z</updated>
+    
+    <content type="html"><![CDATA[<p>前回はHexoで作成したブログにテーマを設定する話をしました。<br>今回は<strong>フィード</strong>なるものをブログに設定していきたいと考えています。<br>というのも当ブログに設定しているテーマに、フィードアイコンが設置されていたためです。</p>
+<h2 id="とりまフィードってなんぞよ"><a href="#とりまフィードってなんぞよ" class="headerlink" title="とりまフィードってなんぞよ"></a>とりまフィードってなんぞよ</h2><p>私はブログ等ウェブサイトを作成・公開したことがないので、フィードと呼ばれる存在がなんなのか知りませんでした。<br>Wikipediaによると・・・</p>
+<blockquote>
+<p>フィード（英: feed）とは、ウェブサイト、特にブログやニュースサイトなどのコンテンツの概要もしくはコンテンツ全体を配信用に加工した文書のこと。<br>またはそのファイルフォーマットのことをいう。<br>より明確にするためにニュースフィード、ウェブフィードと呼ぶこともある。代表的なフォーマットとしては RSS や Atom がある。<br>一般的な使い方は、ウェブサイトの作者がフィードへのリンクをサイトのどこかに置き、ユーザーがそれをアイコンなどから見つけて、自分のフィードリーダーに登録する。後はフィードリーダーがフィードの更新を定期的に確認し、ユーザーは最新のコンテンツを得ることができる。</p>
+</blockquote>
+<p>となっています。<br>ウェブサイトを配信用に加工したものを<strong>フィード</strong>、それを読者が<strong>フィードリーダー</strong>に登録しておけば更新されたときに通知される。というシステムだと考えています。</p>
+<h3 id="数種類のフォーマットが存在する"><a href="#数種類のフォーマットが存在する" class="headerlink" title="数種類のフォーマットが存在する"></a>数種類のフォーマットが存在する</h3><p>Wikipediaでは・・・</p>
+<blockquote>
+<p>代表的なフォーマットとしては RSS や Atom がある。</p>
+</blockquote>
+<p>となっています。<br>フィードが初めての私にとってはどちらを使うか決めかねました。<br>実際フィードリーダーは両対応のものが多いということでしたので<strong>Atom</strong>を選んでみました。</p>
+<h2 id="Hexoで作成したブログにフィードを設定する"><a href="#Hexoで作成したブログにフィードを設定する" class="headerlink" title="Hexoで作成したブログにフィードを設定する"></a>Hexoで作成したブログにフィードを設定する</h2><p>Hexoで作成したブログにフィードを設定するのはとても簡単でした。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$npm hexo-generator-feed --save</div></pre></td></tr></table></figure>
+<p>npmコマンドで<code>hexo-generator-feed</code>をインストールするだけで導入は終了するそうです。<br>ただし公式リファレンスによると<code>_config.yml</code>にいろいろ書き込むことで設定できるようなので、リファレンスを参考に記入していきます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">feed:</div><div class="line">  type: atom      ##フィードの形式</div><div class="line">  path: atom.xml  ##フィードファイルへのパス</div><div class="line">  limit: 20       ##最新の何件を取得するか</div></pre></td></tr></table></figure>
+<p><code>path:</code>はパスを指定していますが<strong>一度deployしないと生成されない</strong>ので、編集する前に<code>hexo g -d</code>をしておくことを推奨します。<br>またパスはGitHubに実際にコミットされるフォルダからの相対パスなので、だいたいは<code>path: atom.xml</code>で大丈夫かと思われます。</p>
+<h3 id="実際に確認してみる"><a href="#実際に確認してみる" class="headerlink" title="実際に確認してみる"></a>実際に確認してみる</h3><p><img src="..\..\..\img\hexo_feed.png"></p>
+<p>どうやらうまくいってるみたいですね。</p>
+<h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>フィードリーダーを使ったことがないのでフィードの需要があるのかわかりませんが、クリックしたらNot Found出されたので設定しました。<br>次回はサイトマップなるもについて調べて実装したいと考えています。<br>もしかしたら普通にイヤホンのレビューもとい紹介記事を書くかもしれません。</p>
+<font color="White">AliexpressのNiceHCKというところでDZX 1+6というイヤホンをオーダーしたのですが、まだ発送連絡がこなくて怖い・・・</font><br><font color="White">インプレッションが無効についてから６週間は待ったみたいな話を聞いたので気長に待つことにしました</font>
+
+<!--
+<img src="..\..\..\img\" />
+<font color="White"></font>
+-->
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前回はHexoで作成したブログにテーマを設定する話をしました。&lt;br&gt;今回は&lt;strong&gt;フィード&lt;/strong&gt;なるものをブログに設定していきたいと考えています。&lt;br&gt;というのも当ブログに設定しているテーマに、フィードアイコンが設置されていたためです。&lt;/p&gt;
+&lt;h
+    
+    </summary>
+    
+      <category term="Programming" scheme="http://debugon.git.io/categories/Programming/"/>
+    
+      <category term="Hexo" scheme="http://debugon.git.io/categories/Programming/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="http://debugon.git.io/tags/Hexo/"/>
+    
+      <category term="YAML" scheme="http://debugon.git.io/tags/YAML/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hexoでブログにテーマを設定する話</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj2in4qw00002ukfx2f2i4bst/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj2in4qw00002ukfx2f2i4bst/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj2unbku40005fkfxgj2wxsgj/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj2unbku40005fkfxgj2wxsgj/</id>
     <published>2017-05-09T02:42:11.000Z</published>
     <updated>2017-05-16T08:02:54.796Z</updated>
     
@@ -71,8 +123,8 @@
   
   <entry>
     <title>GitHub PagesとHexoで作る静的サイトブログ</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj2in4qw00001ukfx0840w59l/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj2in4qw00001ukfx0840w59l/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj2unbktu0002fkfxurjfqkd4/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj2unbktu0002fkfxurjfqkd4/</id>
     <published>2017-04-27T10:39:12.000Z</published>
     <updated>2017-05-16T08:27:07.988Z</updated>
     
@@ -135,8 +187,8 @@
   
   <entry>
     <title>GitHub + Hexo でブログを立ててみたお話</title>
-    <link href="http://debugon.git.io/Blog/cj2in4qwg0005ukfx8cf9uju0/"/>
-    <id>http://debugon.git.io/Blog/cj2in4qwg0005ukfx8cf9uju0/</id>
+    <link href="http://debugon.git.io/Blog/cj2unbkto0001fkfxxzfhpvs1/"/>
+    <id>http://debugon.git.io/Blog/cj2unbkto0001fkfxxzfhpvs1/</id>
     <published>2017-04-24T18:41:14.000Z</published>
     <updated>2017-05-16T08:27:07.966Z</updated>
     
@@ -157,16 +209,16 @@
       <category term="Blog" scheme="http://debugon.git.io/categories/Blog/"/>
     
     
-      <category term="Hexo" scheme="http://debugon.git.io/tags/Hexo/"/>
-    
       <category term="Blog" scheme="http://debugon.git.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="http://debugon.git.io/tags/Hexo/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://debugon.git.io/uncategorized/cj2in4qup0000ukfxhupgfzow/"/>
-    <id>http://debugon.git.io/uncategorized/cj2in4qup0000ukfxhupgfzow/</id>
+    <link href="http://debugon.git.io/uncategorized/cj2unbkrm0000fkfxpig97ghy/"/>
+    <id>http://debugon.git.io/uncategorized/cj2unbkrm0000fkfxpig97ghy/</id>
     <published>2017-04-24T18:11:40.637Z</published>
     <updated>2017-04-24T18:11:40.653Z</updated>
     
