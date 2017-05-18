@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://debugon.git.io/"/>
-  <updated>2017-05-18T16:43:44.180Z</updated>
+  <updated>2017-05-18T16:45:43.488Z</updated>
   <id>http://debugon.git.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://debugon.git.io/Programming/Hexo/cj2unbku70006fkfxgezcnvvp/"/>
     <id>http://debugon.git.io/Programming/Hexo/cj2unbku70006fkfxgezcnvvp/</id>
     <published>2017-05-18T11:53:31.000Z</published>
-    <updated>2017-05-18T16:43:44.180Z</updated>
+    <updated>2017-05-18T16:45:43.488Z</updated>
     
     <content type="html"><![CDATA[<p>前回はHexoで作成したブログにテーマを設定する話をしました。<br>今回は<strong>フィード</strong>なるものをブログに設定していきたいと考えています。<br>というのも当ブログに設定しているテーマに、フィードアイコンが設置されていたためです。</p>
 <h2 id="とりまフィードってなんぞよ"><a href="#とりまフィードってなんぞよ" class="headerlink" title="とりまフィードってなんぞよ"></a>とりまフィードってなんぞよ</h2><p>私はブログ等ウェブサイトを作成・公開したことがないので、フィードと呼ばれる存在がなんなのか知りませんでした。<br>Wikipediaによると・・・</p>
@@ -32,7 +32,7 @@
 <blockquote>
 <p>代表的なフォーマットとしては RSS や Atom がある。</p>
 </blockquote>
-<p>となっています。<br>フィードが初めての私にとってはどちらを使うか決めかねました。<br>実際フィードリーダーは両対応のものが多いということでしたので<strong>Atom</strong>を選んでみました。</p>
+<p>となっています。<br>フィードが初めての私にとってはどちらを使うか決めかねました。<br>幸いフィードリーダーには両対応のものが多いということでしたので<strong>Atom</strong>を選んでみました。</p>
 <h2 id="Hexoで作成したブログにフィードを設定する"><a href="#Hexoで作成したブログにフィードを設定する" class="headerlink" title="Hexoで作成したブログにフィードを設定する"></a>Hexoで作成したブログにフィードを設定する</h2><p>Hexoで作成したブログにフィードを設定するのはとても簡単でした。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$npm hexo-generator-feed --save</div></pre></td></tr></table></figure>
 <p>npmコマンドで<code>hexo-generator-feed</code>をインストールするだけで導入は終了するそうです。<br>ただし公式リファレンスによると<code>_config.yml</code>にいろいろ書き込むことで設定できるようなので、リファレンスを参考に記入していきます。</p>
