@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://debugon.git.io/"/>
-  <updated>2017-05-18T16:46:55.848Z</updated>
+  <updated>2017-05-24T07:33:56.500Z</updated>
   <id>http://debugon.git.io/</id>
   
   <author>
@@ -16,9 +16,93 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Hexoで作成したブログにサイトマップを設定する話</title>
+    <link href="http://debugon.git.io/Programming/Hexo/cj32njecn000690fxb24ar30d/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj32njecn000690fxb24ar30d/</id>
+    <published>2017-05-24T03:27:11.000Z</published>
+    <updated>2017-05-24T07:33:56.500Z</updated>
+    
+    <content type="html"><![CDATA[<p>今回はHexoで作成したブログに<strong>サイトマップ</strong>を実装する方法を紹介します。<br>とは言えHexoでフィードの設定をする方法を調べた方なら、既にご存知かと思われます。<br>私もフィードの設定の次いでに設定した人の一人です。が、サイトマップがどういうものなのか分らないで導入したこともあり、これを機に調べてみることにしました。</p>
+<h2 id="サイトマップとはなにか"><a href="#サイトマップとはなにか" class="headerlink" title="サイトマップとはなにか"></a>サイトマップとはなにか</h2><p>とりあえずｇｇってWikipediaを開いてみると・・・</p>
+<blockquote>
+<p>Sitemaps（サイトマップ）標準は、ウェブマスターがサーチエンジンに、サイト内でクロールすべきURLを教えるための方式を規定するものである。サイトマップは、当該サイトにおけるURL全てをリストした、XMLファイルとして提供し、ウェブサイト運営者は各URLに付加的情報として、最終更新日時や更新頻度、他のURLとの相対的な重要度を加えたりできる。Sitemapsに対応したサーチエンジンでは、この情報を使って、サイトのクロールをより効率的に行えるようになる。サイトマップはサーチエンジンへのURL追加規約であり、URL排除規約であるrobots.txtを補完するものである。</p>
+<div style="text-align: right;"><br>引用元：<a href="https://ja.wikipedia.org/wiki/Sitemaps" target="_blank" rel="external">Sitemaps - Wikipedia</a><br></div>
+
+</blockquote>
+<p>などなど書いてあり正直に言うと</p>
+<p><img src="..\..\..\img\idk.png"></p>
+<font color="White">クロールのリンクなんて、水泳ですよこれー！</font>
+
+<p><strong><em>なんてことはありませんでした。</em></strong><br>よく読んだらある程度は理解できた。（と思います、たぶん）</p>
+<ol>
+<li>ファイル形式はXML</li>
+<li>URLとその他情報が記載される</li>
+<li>Google等の検索エンジンがこれをもとに、クロールを効率的に行う</li>
+</ol>
+<h3 id="クロールとはなにか"><a href="#クロールとはなにか" class="headerlink" title="クロールとはなにか"></a>クロールとはなにか</h3><p>やっぱり気になるのでクロールについても調べてみました。<br>さっと引用すると</p>
+<blockquote>
+<p>クロールとは、検索エンジン内のシステムであるクローラ(ロボット)が一つ一つのサイトを巡回し、サイトの情報を収集することを指します</p>
+<div style="text-align: right;"><br>引用元：<a href="https://ferret-plus.com/1061" target="_blank" rel="external">クロールとは - Webマーケティング用語｜ferret [フェレット]</a><br></div>
+
+</blockquote>
+<p>クルーラーというのがインターネット上のサイトを巡回することで、検索結果に基づいた情報が表示されるようにしているということかしら。<br>サイトマップが設定されることで、検索エンジン側がそのサイトの情報を効率よく収集できるようになるという認識でいいっぽいです。</p>
+<p>検索結果に表示されるにはとりあえず<strong>一度はクロールされなければいけない</strong>ということなので、ブログをやってく上では非常に重要な作業ということですね。</p>
+<h2 id="Hexoにサイトマップを設定していく"><a href="#Hexoにサイトマップを設定していく" class="headerlink" title="Hexoにサイトマップを設定していく"></a>Hexoにサイトマップを設定していく</h2><p>今回もまたHexoのプラグインでサクッと済ませていくのですが、ここで一つ問題が。<br>サイトマップ用のプラグインが<strong>公式</strong>の出しているものと、有志が<strong>作成</strong>したものがあるのでどちらか選ばなければいけません。</p>
+<ol>
+<li>公式：<code>hexo-generator-sitemap</code></li>
+<li>有志：<code>hexo-generator-seo-friendly-sitemap</code></li>
+</ol>
+<p>公式のものは置いておいて、有志の<code>hexo-generator-seo-friendly-sitemap</code>はなんなのでしょう。</p>
+<p>npmを覗いてみます。</p>
+<blockquote>
+<p>Generate SEO-friendly sitemap.<br>Inspired by XML Sitemap in Yoast Wordpress SEO Plugin (<a href="https://yoast.com" target="_blank" rel="external">https://yoast.com</a>).<br>It will generate separated sitemap files for pages, posts, categories, tags and a XSL stylesheet.</p>
+<div style="text-align: right;"><br>引用元：<a href="https://www.npmjs.com/package/hexo-generator-seo-friendly-sitemap" target="_blank" rel="external">hexo-generator-seo-friendly-sitemap</a><br></div>
+
+</blockquote>
+<h3 id="SEOとはなにか"><a href="#SEOとはなにか" class="headerlink" title="SEOとはなにか"></a>SEOとはなにか</h3><p>分からないことは調べる！</p>
+<font color="White">とにかく引用！サクッと行数稼げて楽だ！</font>
+
+<blockquote>
+<p>SEOとは、”Search Engine Optimization” の略であり、検索エンジン最適化を意味する言葉です。検索結果でWebサイトがより多く露出されるために行う一連の取り組みのことを指します。</p>
+<div style="text-align: right;"><br>引用元：<a href="https://www.seohacks.net/basic/knowledge/seo/" target="_blank" rel="external">SEO（検索エンジン最適化）とは | SEO基礎知識 [SEO HACKS]</a><br></div>
+
+</blockquote>
+<p>検索エンジンの最適化とあるが、おそらくここでは「クルーラーが効率的に情報収集できるようなサイトマップ構成をするよ！」っていうプラグインかと。<br>ということでSEOにフレンドリーな<code>hexo-generator-seo-friendly-sitemap</code>をつかっていきます。</p>
+<p>ではやっていきます。<br>npmコマンドで<code>hexo-generator-seo-friendly-sitemap</code>をインストールしましょう。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$npm install hexo-generator-seo-friendly-sitemap --save</div></pre></td></tr></table></figure>
+<p>うまくインストールされたのであれば、次に<code>_config.yml</code>を開いてサイトマップを設定します。<br>一番下あたりに以下のソースを追加して、サイトマップのXMLを指定してあげます。<br>ちなみにフィードと同じで、一度<strong>deployしないと生成されない</strong>かもしれません。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sitemap:</div><div class="line">  path: sitemap.xml</div></pre></td></tr></table></figure>
+<p>これで作業は終了。<br><strong><em>ね、簡単でしょ？</em></strong><br>あとはいつも通り、<code>hexo g -d</code>でdeployすれば<code>public</code>ディレクトリに<code>sitemap.xml</code>かそれっぽいのが生成されていると思われます。</p>
+<h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>結構前にサイトマップを設定したけれど、今だGoogle検索に引っかからないです（切実<br>実際にブログをHexoで初めてみて常々感じますが、世界（特に中国）で人気なだけあってプラグインが豊富で助かっています。<br>正直、サイトマップまで設定したので次回は何を書こうか考え中です。<br>それでは！</p>
+<font color="White">ChinaPostでオーダーしたイヤホンが発送されているということなんで、時期的にレビュー記事でもいいかなと思ってたり。</font>
+
+<!--
+<img src="..\..\..\img\" />
+<font color="White"></font>
+-->
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今回はHexoで作成したブログに&lt;strong&gt;サイトマップ&lt;/strong&gt;を実装する方法を紹介します。&lt;br&gt;とは言えHexoでフィードの設定をする方法を調べた方なら、既にご存知かと思われます。&lt;br&gt;私もフィードの設定の次いでに設定した人の一人です。が、サイトマップが
+    
+    </summary>
+    
+      <category term="Programming" scheme="http://debugon.git.io/categories/Programming/"/>
+    
+      <category term="Hexo" scheme="http://debugon.git.io/categories/Programming/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="http://debugon.git.io/tags/Hexo/"/>
+    
+      <category term="YAML" scheme="http://debugon.git.io/tags/YAML/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hexoで作成したブログにフィードを設定する話</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj2unbku70006fkfxgezcnvvp/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj2unbku70006fkfxgezcnvvp/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj32njecf000290fxdtwswj07/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj32njecf000290fxdtwswj07/</id>
     <published>2017-05-18T11:53:31.000Z</published>
     <updated>2017-05-18T16:46:55.848Z</updated>
     
@@ -69,8 +153,8 @@
   
   <entry>
     <title>Hexoでブログにテーマを設定する話</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj2unbku40005fkfxgj2wxsgj/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj2unbku40005fkfxgj2wxsgj/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj32njecr000790fx9prfzsab/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj32njecr000790fx9prfzsab/</id>
     <published>2017-05-09T02:42:11.000Z</published>
     <updated>2017-05-16T08:02:54.796Z</updated>
     
@@ -123,8 +207,8 @@
   
   <entry>
     <title>GitHub PagesとHexoで作る静的サイトブログ</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj2unbktu0002fkfxurjfqkd4/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj2unbktu0002fkfxurjfqkd4/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj32njecf000190fxqcs6hok8/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj32njecf000190fxqcs6hok8/</id>
     <published>2017-04-27T10:39:12.000Z</published>
     <updated>2017-05-16T08:27:07.988Z</updated>
     
@@ -187,8 +271,8 @@
   
   <entry>
     <title>GitHub + Hexo でブログを立ててみたお話</title>
-    <link href="http://debugon.git.io/Blog/cj2unbkto0001fkfxxzfhpvs1/"/>
-    <id>http://debugon.git.io/Blog/cj2unbkto0001fkfxxzfhpvs1/</id>
+    <link href="http://debugon.git.io/Blog/cj32njecn000590fxlgo069x6/"/>
+    <id>http://debugon.git.io/Blog/cj32njecn000590fxlgo069x6/</id>
     <published>2017-04-24T18:41:14.000Z</published>
     <updated>2017-05-16T08:27:07.966Z</updated>
     
@@ -209,16 +293,16 @@
       <category term="Blog" scheme="http://debugon.git.io/categories/Blog/"/>
     
     
-      <category term="Blog" scheme="http://debugon.git.io/tags/Blog/"/>
-    
       <category term="Hexo" scheme="http://debugon.git.io/tags/Hexo/"/>
+    
+      <category term="Blog" scheme="http://debugon.git.io/tags/Blog/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://debugon.git.io/uncategorized/cj2unbkrm0000fkfxpig97ghy/"/>
-    <id>http://debugon.git.io/uncategorized/cj2unbkrm0000fkfxpig97ghy/</id>
+    <link href="http://debugon.git.io/uncategorized/cj32njean000090fx7r6ity30/"/>
+    <id>http://debugon.git.io/uncategorized/cj32njean000090fx7r6ity30/</id>
     <published>2017-04-24T18:11:40.637Z</published>
     <updated>2017-04-24T18:11:40.653Z</updated>
     

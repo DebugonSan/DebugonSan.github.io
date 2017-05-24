@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexoで作成したブログにサイトマップを設定する話 | 名前はまだ無い。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="description" content="今回はHexoで作成したブログにサイトマップを実装する方法を紹介します。とは言えHexoでフィードの設定をする方法を調べた方なら、既にご存知かと思われます。私もフィードの設定の次いでに設定した人の一人です。が、サイトマップがどういうものなのか分らないで導入したこともあり、これを機に調べてみることにしました。 サイトマップとはなにかとりあえずｇｇってWikipediaを開いてみると・・・  Site">
+<meta name="keywords" content="Hexo,YAML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexoで作成したブログにサイトマップを設定する話">
+<meta property="og:url" content="http://debugon.git.io/Programming/Hexo/cj32njecn000690fxb24ar30d/index.html">
+<meta property="og:site_name" content="名前はまだ無い。">
+<meta property="og:description" content="今回はHexoで作成したブログにサイトマップを実装する方法を紹介します。とは言えHexoでフィードの設定をする方法を調べた方なら、既にご存知かと思われます。私もフィードの設定の次いでに設定した人の一人です。が、サイトマップがどういうものなのか分らないで導入したこともあり、これを機に調べてみることにしました。 サイトマップとはなにかとりあえずｇｇってWikipediaを開いてみると・・・  Site">
+<meta property="og:image" content="http://debugon.git.io/img/idk.png">
+<meta property="og:updated_time" content="2017-05-24T07:33:56.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexoで作成したブログにサイトマップを設定する話">
+<meta name="twitter:description" content="今回はHexoで作成したブログにサイトマップを実装する方法を紹介します。とは言えHexoでフィードの設定をする方法を調べた方なら、既にご存知かと思われます。私もフィードの設定の次いでに設定した人の一人です。が、サイトマップがどういうものなのか分らないで導入したこともあり、これを機に調べてみることにしました。 サイトマップとはなにかとりあえずｇｇってWikipediaを開いてみると・・・  Site">
+<meta name="twitter:image" content="http://debugon.git.io/img/idk.png">
+<meta name="twitter:creator" content="@DebugonSan">
+  
+    <link rel="alternative" href="/atom.xml" title="名前はまだ無い。" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href='//fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">名前はまだ無い。</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">NO NAME is Debugon&#39;s Memo...</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        
+          <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://debugon.git.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-hexo-sitemaps" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Programming/Hexo/cj32njecn000690fxb24ar30d/" class="article-date">
+  <time datetime="2017-05-24T03:27:11.000Z" itemprop="datePublished">2017-05-24</time>
+</a>
+
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming/">Programming</a>►<a class="article-category-link" href="/categories/Programming/Hexo/">Hexo</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+    
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hexoで作成したブログにサイトマップを設定する話
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div class="article-sharing">
+  <ul>
+    <li>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj32njecn000690fxb24ar30d/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj32njecn000690fxb24ar30d/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj32njecn000690fxb24ar30d/" >Tweet</a>
+    </li>
+    <li>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj32njecn000690fxb24ar30d/"></div>
+    </li>
+  </ul>
+</div>
+
+      
+      
+        
+        <p>今回はHexoで作成したブログに<strong>サイトマップ</strong>を実装する方法を紹介します。<br>とは言えHexoでフィードの設定をする方法を調べた方なら、既にご存知かと思われます。<br>私もフィードの設定の次いでに設定した人の一人です。が、サイトマップがどういうものなのか分らないで導入したこともあり、これを機に調べてみることにしました。</p>
+<h2 id="サイトマップとはなにか"><a href="#サイトマップとはなにか" class="headerlink" title="サイトマップとはなにか"></a>サイトマップとはなにか</h2><p>とりあえずｇｇってWikipediaを開いてみると・・・</p>
+<blockquote>
+<p>Sitemaps（サイトマップ）標準は、ウェブマスターがサーチエンジンに、サイト内でクロールすべきURLを教えるための方式を規定するものである。サイトマップは、当該サイトにおけるURL全てをリストした、XMLファイルとして提供し、ウェブサイト運営者は各URLに付加的情報として、最終更新日時や更新頻度、他のURLとの相対的な重要度を加えたりできる。Sitemapsに対応したサーチエンジンでは、この情報を使って、サイトのクロールをより効率的に行えるようになる。サイトマップはサーチエンジンへのURL追加規約であり、URL排除規約であるrobots.txtを補完するものである。</p>
+<div style="text-align: right;"><br>引用元：<a href="https://ja.wikipedia.org/wiki/Sitemaps" target="_blank" rel="external">Sitemaps - Wikipedia</a><br></div>
+
+</blockquote>
+<p>などなど書いてあり正直に言うと</p>
+<p><img src="..\..\..\img\idk.png"></p>
+<font color="White">クロールのリンクなんて、水泳ですよこれー！</font>
+
+<p><strong><em>なんてことはありませんでした。</em></strong><br>よく読んだらある程度は理解できた。（と思います、たぶん）</p>
+<ol>
+<li>ファイル形式はXML</li>
+<li>URLとその他情報が記載される</li>
+<li>Google等の検索エンジンがこれをもとに、クロールを効率的に行う</li>
+</ol>
+<h3 id="クロールとはなにか"><a href="#クロールとはなにか" class="headerlink" title="クロールとはなにか"></a>クロールとはなにか</h3><p>やっぱり気になるのでクロールについても調べてみました。<br>さっと引用すると</p>
+<blockquote>
+<p>クロールとは、検索エンジン内のシステムであるクローラ(ロボット)が一つ一つのサイトを巡回し、サイトの情報を収集することを指します</p>
+<div style="text-align: right;"><br>引用元：<a href="https://ferret-plus.com/1061" target="_blank" rel="external">クロールとは - Webマーケティング用語｜ferret [フェレット]</a><br></div>
+
+</blockquote>
+<p>クルーラーというのがインターネット上のサイトを巡回することで、検索結果に基づいた情報が表示されるようにしているということかしら。<br>サイトマップが設定されることで、検索エンジン側がそのサイトの情報を効率よく収集できるようになるという認識でいいっぽいです。</p>
+<p>検索結果に表示されるにはとりあえず<strong>一度はクロールされなければいけない</strong>ということなので、ブログをやってく上では非常に重要な作業ということですね。</p>
+<h2 id="Hexoにサイトマップを設定していく"><a href="#Hexoにサイトマップを設定していく" class="headerlink" title="Hexoにサイトマップを設定していく"></a>Hexoにサイトマップを設定していく</h2><p>今回もまたHexoのプラグインでサクッと済ませていくのですが、ここで一つ問題が。<br>サイトマップ用のプラグインが<strong>公式</strong>の出しているものと、有志が<strong>作成</strong>したものがあるのでどちらか選ばなければいけません。</p>
+<ol>
+<li>公式：<code>hexo-generator-sitemap</code></li>
+<li>有志：<code>hexo-generator-seo-friendly-sitemap</code></li>
+</ol>
+<p>公式のものは置いておいて、有志の<code>hexo-generator-seo-friendly-sitemap</code>はなんなのでしょう。</p>
+<p>npmを覗いてみます。</p>
+<blockquote>
+<p>Generate SEO-friendly sitemap.<br>Inspired by XML Sitemap in Yoast Wordpress SEO Plugin (<a href="https://yoast.com" target="_blank" rel="external">https://yoast.com</a>).<br>It will generate separated sitemap files for pages, posts, categories, tags and a XSL stylesheet.</p>
+<div style="text-align: right;"><br>引用元：<a href="https://www.npmjs.com/package/hexo-generator-seo-friendly-sitemap" target="_blank" rel="external">hexo-generator-seo-friendly-sitemap</a><br></div>
+
+</blockquote>
+<h3 id="SEOとはなにか"><a href="#SEOとはなにか" class="headerlink" title="SEOとはなにか"></a>SEOとはなにか</h3><p>分からないことは調べる！</p>
+<font color="White">とにかく引用！サクッと行数稼げて楽だ！</font>
+
+<blockquote>
+<p>SEOとは、”Search Engine Optimization” の略であり、検索エンジン最適化を意味する言葉です。検索結果でWebサイトがより多く露出されるために行う一連の取り組みのことを指します。</p>
+<div style="text-align: right;"><br>引用元：<a href="https://www.seohacks.net/basic/knowledge/seo/" target="_blank" rel="external">SEO（検索エンジン最適化）とは | SEO基礎知識 [SEO HACKS]</a><br></div>
+
+</blockquote>
+<p>検索エンジンの最適化とあるが、おそらくここでは「クルーラーが効率的に情報収集できるようなサイトマップ構成をするよ！」っていうプラグインかと。<br>ということでSEOにフレンドリーな<code>hexo-generator-seo-friendly-sitemap</code>をつかっていきます。</p>
+<p>ではやっていきます。<br>npmコマンドで<code>hexo-generator-seo-friendly-sitemap</code>をインストールしましょう。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$npm install hexo-generator-seo-friendly-sitemap --save</div></pre></td></tr></table></figure>
+<p>うまくインストールされたのであれば、次に<code>_config.yml</code>を開いてサイトマップを設定します。<br>一番下あたりに以下のソースを追加して、サイトマップのXMLを指定してあげます。<br>ちなみにフィードと同じで、一度<strong>deployしないと生成されない</strong>かもしれません。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sitemap:</div><div class="line">  path: sitemap.xml</div></pre></td></tr></table></figure>
+<p>これで作業は終了。<br><strong><em>ね、簡単でしょ？</em></strong><br>あとはいつも通り、<code>hexo g -d</code>でdeployすれば<code>public</code>ディレクトリに<code>sitemap.xml</code>かそれっぽいのが生成されていると思われます。</p>
+<h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>結構前にサイトマップを設定したけれど、今だGoogle検索に引っかからないです（切実<br>実際にブログをHexoで初めてみて常々感じますが、世界（特に中国）で人気なだけあってプラグインが豊富で助かっています。<br>正直、サイトマップまで設定したので次回は何を書こうか考え中です。<br>それでは！</p>
+<font color="White">ChinaPostでオーダーしたイヤホンが発送されているということなんで、時期的にレビュー記事でもいいかなと思ってたり。</font>
+
+<!--
+<img src="..\..\..\img\" />
+<font color="White"></font>
+-->
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://debugon.git.io/Programming/Hexo/cj32njecn000690fxb24ar30d/" data-id="cj32njecn000690fxb24ar30d" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/YAML/">YAML</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Programming/Hexo/cj32njecf000290fxdtwswj07/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older Post</strong>
+      <div class="article-nav-title">Hexoで作成したブログにフィードを設定する話</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-about" class="widget-title">About</h3>
+    <div class="widget">
+      
+        <p> Debugon </p>
+      
+      
+        <p> <a href="http://twitter.com/DebugonSan">@DebugonSan</a> </p>
+      
+      </p>
+      
+        <p>  </p>
+      
+      
+        <p>  </p>
+      
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-category" class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/Hexo/">Hexo</a><span class="category-list-count">4</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-tag" class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a><span class="tag-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-tagcloud" class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/GitHub/" style="font-size: 13.33px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/YAML/" style="font-size: 16.67px;">YAML</a>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-archive" class="widget-title" data-skip-mobile-nav="true">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-recent-posts" class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Programming/Hexo/cj32njecn000690fxb24ar30d/">Hexoで作成したブログにサイトマップを設定する話</a>
+          </li>
+        
+          <li>
+            <a href="/Programming/Hexo/cj32njecf000290fxdtwswj07/">Hexoで作成したブログにフィードを設定する話</a>
+          </li>
+        
+          <li>
+            <a href="/Programming/Hexo/cj32njecr000790fx9prfzsab/">Hexoでブログにテーマを設定する話</a>
+          </li>
+        
+          <li>
+            <a href="/Programming/Hexo/cj32njecf000190fxqcs6hok8/">GitHub PagesとHexoで作る静的サイトブログ</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/cj32njecn000590fxlgo069x6/">GitHub + Hexo でブログを立ててみたお話</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Copyrights &copy; 2017 Debugon All Rights Reserved. <br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+      Themed by <a href="https://github.com/kwhrtsk/hexo-theme-ingenuous">Ingenuous</a> (based on <a href="https://github.com/hexojs/hexo-theme-landscape">Landscape</a>).
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.4";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
