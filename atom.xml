@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://debugon.git.io/"/>
-  <updated>2017-09-25T15:39:47.295Z</updated>
+  <updated>2017-09-25T17:34:01.294Z</updated>
   <id>http://debugon.git.io/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>TravisCIを利用するお話-言語編-</title>
+    <link href="http://debugon.git.io/Programming/TravisCI/cj80geme3000aekgriam37pds/"/>
+    <id>http://debugon.git.io/Programming/TravisCI/cj80geme3000aekgriam37pds/</id>
+    <published>2017-09-25T15:57:49.000Z</published>
+    <updated>2017-09-25T17:34:01.294Z</updated>
+    
+    <content type="html"><![CDATA[<p>前回はTravisCIを導入するための話でしたが、今回はそこから掘り下げて<code>lang</code>部について取り上げたいと思います。</p><h2 id="TravisCIのlang部"><a href="#TravisCIのlang部" class="headerlink" title="TravisCIのlang部"></a>TravisCIの<code>lang</code>部</h2><p>TravisCIでは<code>.yml</code>ファイルに記述する際、検査に使用する言語を<code>lang</code>部に書き記す必要があります。<br>前回はNode.jsを例に進めましたが、そのほかにも様々な言語をサポートしているので気になった方は一度見るといいかもしれません。<br><img src="..\..\..\img\travis_lang_list.png"></p><p>今回お話ししたいのは、一つの検査に複数の言語を使用する場合です。<br>「RedPenでバリバリ、検査するゾ～」なんて豪語しておきながら、躓いてしまった時のお話になります。</p><h2 id="TravisCIによる複数言語での検査"><a href="#TravisCIによる複数言語での検査" class="headerlink" title="TravisCIによる複数言語での検査"></a>TravisCIによる複数言語での検査</h2><p>ご存知の通り当ブログはHexoによって生成したファイルをGitHub.ioにアップロードして、公開しているという形式を採っています。<br>その生成元ファイルをTravisCIとRedPenでチェックし、OKであれば生成してGitHub.ioにコミットするということをしたかったのです。<br>しかしながら、Hexoはjavascriptで書かれており、RedPenはというとJAVAアプリケーションなのです。<br>当然<code>lang</code>部に<code>lang: node_js</code>と書けば「RedPenはJAVAアプリケーションだぞゴルァ！」を怒られ、<code>lang: java</code>と書けば「Node.jsってなんすかー？」とエラーを連発してしまいます。<br>その時は日本語で記載されたTipsがなかったものですこし悩みましたが、海外のフォーラムで似た環境の方がいたので参考になりました。<br>解決策としては…</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">lang: node_js, java</div><div class="line">node_js:</div><div class="line">  - &quot;node&quot;</div><div class="line"></div><div class="line">jdk:</div><div class="line">  - oraclejdk8</div></pre></td></tr></table></figure><p><code>lang</code>部に複数の言語をカンマで区切って記すだけでいいんですね！<br>すごい簡単でした！<br>あ！<br>使うNode.jsとJDKのバージョンの指定もお忘れなく！<br><img src="..\..\..\img\travis_lang_working.png"><br>…<br>画像ですと見づらいですが、236行目で<code>npm install</code>と511行目で<code>redpen...</code>が走っているところを見ると、ちゃんと動いていると思います。</p><h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>当時は結構躓いていた割に答えがあっさりしていて複雑な気持ちになりました。<br>もしかしたらHexoでブログ作ってみたけどRedPenで検査してみてぇっていう物好きがいるかもしれませんので、困ったときにお力になれば嬉しかったりします。</p><!--><div style="text-align: right;">引用元：[name](https://)</div><img src="..\..\..\img\" /><font color="White"></font>-->]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;前回はTravisCIを導入するための話でしたが、今回はそこから掘り下げて&lt;code&gt;lang&lt;/code&gt;部について取り上げたいと思います。&lt;/p&gt;
+&lt;h2 id=&quot;TravisCIのlang部&quot;&gt;&lt;a href=&quot;#TravisCIのlang部&quot; class=&quot;head
+      
+    
+    </summary>
+    
+      <category term="Programming" scheme="http://debugon.git.io/categories/Programming/"/>
+    
+      <category term="TravisCI" scheme="http://debugon.git.io/categories/Programming/TravisCI/"/>
+    
+    
+      <category term="YAML" scheme="http://debugon.git.io/tags/YAML/"/>
+    
+      <category term="TravisCI" scheme="http://debugon.git.io/tags/TravisCI/"/>
+    
+  </entry>
+  
+  <entry>
     <title>TravisCIを利用するお話-導入編-</title>
-    <link href="http://debugon.git.io/Programming/Hexo/TravisCI/cj80ck9kx0009wsgrxlrdz49e/"/>
-    <id>http://debugon.git.io/Programming/Hexo/TravisCI/cj80ck9kx0009wsgrxlrdz49e/</id>
+    <link href="http://debugon.git.io/Programming/TravisCI/cj80gemdy0009ekgri21wwo26/"/>
+    <id>http://debugon.git.io/Programming/TravisCI/cj80gemdy0009ekgri21wwo26/</id>
     <published>2017-06-14T02:32:17.000Z</published>
-    <updated>2017-09-25T15:39:47.295Z</updated>
+    <updated>2017-09-25T17:34:01.287Z</updated>
     
     <content type="html"><![CDATA[<p>3週間ぶりの投稿に見えますが、おそらく公開時にはもっと時間がたっていると思います。<br>というのも今までちょいちょい記事を書いていましたが、TravisCIに手を出してみて躓いてしまったので一旦記事にして整理しようと考えたからです。</p><h2 id="TravisCIとは"><a href="#TravisCIとは" class="headerlink" title="TravisCIとは"></a>TravisCIとは</h2><p>TravisCIとは継続的インテグレーション(CI)を行うためのツールで、CIツールのひとつとされています。<br>TravisCI以外にもいくつかのCIツールがあり、代表的なのは</p><ol><li>Jenkins</li><li>CircleCI</li><li>wercker</li></ol><p>etc…<br>無料、有償のCIツールが存在していますが、今回は比較的メジャーなTravisCIを選択することにしました。</p><h3 id="なぜ、TravisCI？？？"><a href="#なぜ、TravisCI？？？" class="headerlink" title="なぜ、TravisCI？？？"></a>なぜ、TravisCI？？？</h3><p>とてもふわっとした理由で選んだのでなんとも言えませんが、日本語の資料が多い印象を受けたからです。<br>JenkinsやCircleCIも日本語の資料が多く、CircleCIについてはRedPenでの検査環境を整えている方もいたので特に悩みました。<br>（Hexoでブログを書いておいて何をいまさらって感じもしますけれど・・・）<br>最終的には他のCIツールよりもとっつきやすそうということもあり、TravisCIにすることになりました。</p><h2 id="TravisCIの使い方"><a href="#TravisCIの使い方" class="headerlink" title="TravisCIの使い方"></a>TravisCIの使い方</h2><p>TravisCIにはGitHubのアカウントを用いてサインインすることになります。<br>というのも、TravisCIはGitHubと連携することでテスト環境を構築せずテストを行えるからです。<br>逆に言ってしまうとTravisCIを使う場合はGitHubでなければいけないことになるので、別のサイトを利用してる場合は諦めるしかありません。<br>また無料プランでは公開レポジトリのみで、プライベートレポジトリを検査対象にするには有料プランに入らなければいけません。<br>初めてサインインした際はアプリケーション連携をするかどうか問われますので、許可してくださいね。</p><h3 id="レポジトリの選択"><a href="#レポジトリの選択" class="headerlink" title="レポジトリの選択"></a>レポジトリの選択</h3><p>検査対象となるレポジトリを選択するにはGitHubアカウントでサインイン後、画面右上から<code>[ユーザー名]-&gt;Accounts</code>と選択することで選択画面を開くことができます。<br>その後は図のように案内に沿ってレポジトリを選択すれば、完了となります。<br><img src="..\..\..\img\travis_repo.png"></p><h3 id="travis-yml"><a href="#travis-yml" class="headerlink" title=".travis.yml"></a>.travis.yml</h3><p>TravisCIではYAML形式で書かれた<code>.travis.yml</code>というファイルをルートディレクトリに配置しなければいけません。<br>CIツールを使っているor使ったことのある方ならお分かりかと思いますが、このファイルがTravisCIにおける設定ファイルになります。<br>適当に作成後、TravisCIで使用する設定を書き込みます。<br>今回は検査するための最小構成を設定したいと思います。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">lang: node_js</div><div class="line">node_js:</div><div class="line">  - &quot;node&quot;</div></pre></td></tr></table></figure><p>HexoはNode.jsで書かれているので<code>lang:</code>でNode.jsを選択しています。<br><code>node_js:</code>ではNode.jsのバージョンを指定できますが、<code>- &quot;node&quot;</code>とすることで最新の安定版を指定することができます。<br>以上で最小構成でTravisCIによるテストを実装することができます。</p><h3 id="テスト"><a href="#テスト" class="headerlink" title="テスト"></a>テスト</h3><p>TravisCIでテストするには先ほど作成した<code>.travis.yml</code>をTravisCIで指定したレポジトリの直下に配置、PushすることでTravisが<code>.travis.yml</code>を元に検査を開始します。<br>検査はTravisCI上で逐一確認できるようになっており、結果はGitHubに登録しているメールアドレスに結果が通知されるようになっています。<br>最小構成の実行結果ではありませんが、TravisCIが動作すると図のようになります。(失敗しているんですけどね・・・</p><p><img src="..\..\..\img\redpen-test-run.png"></p><h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>今回はTravisCIを最小構成で実装～テストするまでを記しましたが、次回は<code>.travis.yml</code>について細かく取り上げられたらと考えております。<br>その後はRedPenを取り扱ってみたいと考えていますが、最近は他の校正ツールに乗り換えようかと思ってたりするので、まだ未定ということで。</p><font color="White">最近はノートPCが置き引きに遭い、スマホが文鎮化してしまったりと久しぶりの浦島状態を味わいました・・・</font><!--><div style="text-align: right;">引用元：[name](https://)</div><img src="..\..\..\img\" /><font color="White"></font>-->]]></content>
     
@@ -37,12 +67,8 @@
     
       <category term="Programming" scheme="http://debugon.git.io/categories/Programming/"/>
     
-      <category term="Hexo" scheme="http://debugon.git.io/categories/Programming/Hexo/"/>
+      <category term="TravisCI" scheme="http://debugon.git.io/categories/Programming/TravisCI/"/>
     
-      <category term="TravisCI" scheme="http://debugon.git.io/categories/Programming/Hexo/TravisCI/"/>
-    
-    
-      <category term="Hexo" scheme="http://debugon.git.io/tags/Hexo/"/>
     
       <category term="YAML" scheme="http://debugon.git.io/tags/YAML/"/>
     
@@ -52,8 +78,8 @@
   
   <entry>
     <title>Hexoで作成したブログにサイトマップを設定する話</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj80ck9kv0006wsgr69vdlnzf/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj80ck9kv0006wsgr69vdlnzf/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj80gemdv0006ekgrvbyhw60j/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj80gemdv0006ekgrvbyhw60j/</id>
     <published>2017-05-24T03:27:11.000Z</published>
     <updated>2017-05-24T07:33:56.000Z</updated>
     
@@ -81,8 +107,8 @@
   
   <entry>
     <title>Hexoで作成したブログにフィードを設定する話</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj80ck9kr0005wsgr6ke03dxb/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj80ck9kr0005wsgr6ke03dxb/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj80gemds0005ekgr54z1yqw0/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj80gemds0005ekgr54z1yqw0/</id>
     <published>2017-05-18T11:53:31.000Z</published>
     <updated>2017-05-31T02:11:48.000Z</updated>
     
@@ -111,8 +137,8 @@
   
   <entry>
     <title>Hexoでブログにテーマを設定する話</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj80ck9kk0001wsgrp6pdbves/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj80ck9kk0001wsgrp6pdbves/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj80gemdr0004ekgrafprw1un/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj80gemdr0004ekgrafprw1un/</id>
     <published>2017-05-09T02:42:11.000Z</published>
     <updated>2017-05-16T08:02:54.000Z</updated>
     
@@ -145,8 +171,8 @@
   
   <entry>
     <title>GitHub PagesとHexoで作る静的サイトブログ</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj80ck9kf0000wsgrlibv4sbp/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj80ck9kf0000wsgrlibv4sbp/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj80gemdg0000ekgrgg6fvvyd/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj80gemdg0000ekgrgg6fvvyd/</id>
     <published>2017-04-27T10:39:12.000Z</published>
     <updated>2017-05-16T08:27:07.000Z</updated>
     
@@ -181,8 +207,8 @@
   
   <entry>
     <title>GitHub + Hexo でブログを立ててみたお話</title>
-    <link href="http://debugon.git.io/Blog/cj80ck9kp0004wsgr3wuwa6tn/"/>
-    <id>http://debugon.git.io/Blog/cj80ck9kp0004wsgr3wuwa6tn/</id>
+    <link href="http://debugon.git.io/Blog/cj80gemdl0001ekgrdlrod08z/"/>
+    <id>http://debugon.git.io/Blog/cj80gemdl0001ekgrdlrod08z/</id>
     <published>2017-04-24T18:41:14.000Z</published>
     <updated>2017-05-16T08:27:07.000Z</updated>
     
