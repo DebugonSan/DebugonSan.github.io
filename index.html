@@ -11,6 +11,7 @@
 <meta property="og:title" content="名前はまだ無い。">
 <meta property="og:url" content="http://debugon.git.io/index.html">
 <meta property="og:site_name" content="名前はまだ無い。">
+<meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="名前はまだ無い。">
 <meta name="twitter:creator" content="@DebugonSan">
@@ -68,9 +69,102 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-travis-ci" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Programming/Hexo/TravisCI/cj80ck9kx0009wsgrxlrdz49e/" class="article-date">
+  <time datetime="2017-06-14T02:32:17.000Z" itemprop="datePublished">2017-06-14</time>
+</a>
+
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming/">Programming</a>►<a class="article-category-link" href="/categories/Programming/Hexo/">Hexo</a>►<a class="article-category-link" href="/categories/Programming/Hexo/TravisCI/">TravisCI</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+    
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Programming/Hexo/TravisCI/cj80ck9kx0009wsgrxlrdz49e/">TravisCIを利用するお話-導入編-</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div class="article-sharing">
+  <ul>
+    <li>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/TravisCI/cj80ck9kx0009wsgrxlrdz49e/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/TravisCI/cj80ck9kx0009wsgrxlrdz49e/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/TravisCI/cj80ck9kx0009wsgrxlrdz49e/" >Tweet</a>
+    </li>
+    <li>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/TravisCI/cj80ck9kx0009wsgrxlrdz49e/"></div>
+    </li>
+  </ul>
+</div>
+
+      
+      
+        
+        <p>3週間ぶりの投稿に見えますが、おそらく公開時にはもっと時間がたっていると思います。<br>というのも今までちょいちょい記事を書いていましたが、TravisCIに手を出してみて躓いてしまったので一旦記事にして整理しようと考えたからです。</p>
+<h2 id="TravisCIとは"><a href="#TravisCIとは" class="headerlink" title="TravisCIとは"></a>TravisCIとは</h2><p>TravisCIとは継続的インテグレーション(CI)を行うためのツールで、CIツールのひとつとされています。<br>TravisCI以外にもいくつかのCIツールがあり、代表的なのは</p>
+<ol>
+<li>Jenkins</li>
+<li>CircleCI</li>
+<li>wercker</li>
+</ol>
+<p>etc…<br>無料、有償のCIツールが存在していますが、今回は比較的メジャーなTravisCIを選択することにしました。</p>
+<h3 id="なぜ、TravisCI？？？"><a href="#なぜ、TravisCI？？？" class="headerlink" title="なぜ、TravisCI？？？"></a>なぜ、TravisCI？？？</h3><p>とてもふわっとした理由で選んだのでなんとも言えませんが、日本語の資料が多い印象を受けたからです。<br>JenkinsやCircleCIも日本語の資料が多く、CircleCIについてはRedPenでの検査環境を整えている方もいたので特に悩みました。<br>（Hexoでブログを書いておいて何をいまさらって感じもしますけれど・・・）<br>最終的には他のCIツールよりもとっつきやすそうということもあり、TravisCIにすることになりました。</p>
+<h2 id="TravisCIの使い方"><a href="#TravisCIの使い方" class="headerlink" title="TravisCIの使い方"></a>TravisCIの使い方</h2><p>TravisCIにはGitHubのアカウントを用いてサインインすることになります。<br>というのも、TravisCIはGitHubと連携することでテスト環境を構築せずテストを行えるからです。<br>逆に言ってしまうとTravisCIを使う場合はGitHubでなければいけないことになるので、別のサイトを利用してる場合は諦めるしかありません。<br>また無料プランでは公開レポジトリのみで、プライベートレポジトリを検査対象にするには有料プランに入らなければいけません。<br>初めてサインインした際はアプリケーション連携をするかどうか問われますので、許可してくださいね。</p>
+<h3 id="レポジトリの選択"><a href="#レポジトリの選択" class="headerlink" title="レポジトリの選択"></a>レポジトリの選択</h3><p>検査対象となるレポジトリを選択するにはGitHubアカウントでサインイン後、画面右上から<code>[ユーザー名]-&gt;Accounts</code>と選択することで選択画面を開くことができます。<br>その後は図のように案内に沿ってレポジトリを選択すれば、完了となります。<br><img src="..\..\..\img\travis_repo.png"></p>
+<h3 id="travis-yml"><a href="#travis-yml" class="headerlink" title=".travis.yml"></a>.travis.yml</h3><p>TravisCIではYAML形式で書かれた<code>.travis.yml</code>というファイルをルートディレクトリに配置しなければいけません。<br>CIツールを使っているor使ったことのある方ならお分かりかと思いますが、このファイルがTravisCIにおける設定ファイルになります。<br>適当に作成後、TravisCIで使用する設定を書き込みます。<br>今回は検査するための最小構成を設定したいと思います。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">lang: node_js</div><div class="line">node_js:</div><div class="line">  - &quot;node&quot;</div></pre></td></tr></table></figure>
+<p>HexoはNode.jsで書かれているので<code>lang:</code>でNode.jsを選択しています。<br><code>node_js:</code>ではNode.jsのバージョンを指定できますが、<code>- &quot;node&quot;</code>とすることで最新の安定版を指定することができます。<br>以上で最小構成でTravisCIによるテストを実装することができます。</p>
+<h3 id="テスト"><a href="#テスト" class="headerlink" title="テスト"></a>テスト</h3><p>TravisCIでテストするには先ほど作成した<code>.travis.yml</code>をTravisCIで指定したレポジトリの直下に配置、PushすることでTravisが<code>.travis.yml</code>を元に検査を開始します。<br>検査はTravisCI上で逐一確認できるようになっており、結果はGitHubに登録しているメールアドレスに結果が通知されるようになっています。<br>最小構成の実行結果ではありませんが、TravisCIが動作すると図のようになります。(失敗しているんですけどね・・・</p>
+<p><img src="..\..\..\img\redpen-test-run.png"></p>
+<h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>今回はTravisCIを最小構成で実装～テストするまでを記しましたが、次回は<code>.travis.yml</code>について細かく取り上げられたらと考えております。<br>その後はRedPenを取り扱ってみたいと考えていますが、最近は他の校正ツールに乗り換えようかと思ってたりするので、まだ未定ということで。</p>
+<font color="White">最近はノートPCが置き引きに遭い、スマホが文鎮化してしまったりと久しぶりの浦島状態を味わいました・・・</font>
+
+<!--
+><div style="text-align: right;">
+引用元：[name](https://)
+</div>
+<img src="..\..\..\img\" />
+<font color="White"></font>
+-->
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://debugon.git.io/Programming/Hexo/TravisCI/cj80ck9kx0009wsgrxlrdz49e/" data-id="cj80ck9kx0009wsgrxlrdz49e" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TravisCI/">TravisCI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/YAML/">YAML</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-hexo-sitemaps" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Programming/Hexo/cj32njecn000690fxb24ar30d/" class="article-date">
+    <a href="/Programming/Hexo/cj80ck9kv0006wsgr69vdlnzf/" class="article-date">
   <time datetime="2017-05-24T03:27:11.000Z" itemprop="datePublished">2017-05-24</time>
 </a>
 
@@ -89,7 +183,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Programming/Hexo/cj32njecn000690fxb24ar30d/">Hexoで作成したブログにサイトマップを設定する話</a>
+      <a class="article-title" href="/Programming/Hexo/cj80ck9kv0006wsgr69vdlnzf/">Hexoで作成したブログにサイトマップを設定する話</a>
     </h1>
   
 
@@ -101,13 +195,13 @@
         <div class="article-sharing">
   <ul>
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj32njecn000690fxb24ar30d/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj80ck9kv0006wsgr69vdlnzf/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj32njecn000690fxb24ar30d/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj32njecn000690fxb24ar30d/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj80ck9kv0006wsgr69vdlnzf/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj80ck9kv0006wsgr69vdlnzf/" >Tweet</a>
     </li>
     <li>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj32njecn000690fxb24ar30d/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj80ck9kv0006wsgr69vdlnzf/"></div>
     </li>
   </ul>
 </div>
@@ -178,7 +272,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://debugon.git.io/Programming/Hexo/cj32njecn000690fxb24ar30d/" data-id="cj32njecn000690fxb24ar30d" class="article-share-link">Share</a>
+        <a data-url="http://debugon.git.io/Programming/Hexo/cj80ck9kv0006wsgr69vdlnzf/" data-id="cj80ck9kv0006wsgr69vdlnzf" class="article-share-link">Share</a>
       
       
       
@@ -195,7 +289,7 @@
   
     <article id="post-hexo-feed" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Programming/Hexo/cj32njecf000290fxdtwswj07/" class="article-date">
+    <a href="/Programming/Hexo/cj80ck9kr0005wsgr6ke03dxb/" class="article-date">
   <time datetime="2017-05-18T11:53:31.000Z" itemprop="datePublished">2017-05-18</time>
 </a>
 
@@ -214,7 +308,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Programming/Hexo/cj32njecf000290fxdtwswj07/">Hexoで作成したブログにフィードを設定する話</a>
+      <a class="article-title" href="/Programming/Hexo/cj80ck9kr0005wsgr6ke03dxb/">Hexoで作成したブログにフィードを設定する話</a>
     </h1>
   
 
@@ -226,13 +320,13 @@
         <div class="article-sharing">
   <ul>
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj32njecf000290fxdtwswj07/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj80ck9kr0005wsgr6ke03dxb/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj32njecf000290fxdtwswj07/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj32njecf000290fxdtwswj07/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj80ck9kr0005wsgr6ke03dxb/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj80ck9kr0005wsgr6ke03dxb/" >Tweet</a>
     </li>
     <li>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj32njecf000290fxdtwswj07/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj80ck9kr0005wsgr6ke03dxb/"></div>
     </li>
   </ul>
 </div>
@@ -244,6 +338,8 @@
 <h2 id="とりまフィードってなんぞよ"><a href="#とりまフィードってなんぞよ" class="headerlink" title="とりまフィードってなんぞよ"></a>とりまフィードってなんぞよ</h2><p>私はブログ等ウェブサイトを作成・公開したことがないので、フィードと呼ばれる存在がなんなのか知りませんでした。<br>Wikipediaによると・・・</p>
 <blockquote>
 <p>フィード（英: feed）とは、ウェブサイト、特にブログやニュースサイトなどのコンテンツの概要もしくはコンテンツ全体を配信用に加工した文書のこと。<br>またはそのファイルフォーマットのことをいう。<br>より明確にするためにニュースフィード、ウェブフィードと呼ぶこともある。代表的なフォーマットとしては RSS や Atom がある。<br>一般的な使い方は、ウェブサイトの作者がフィードへのリンクをサイトのどこかに置き、ユーザーがそれをアイコンなどから見つけて、自分のフィードリーダーに登録する。後はフィードリーダーがフィードの更新を定期的に確認し、ユーザーは最新のコンテンツを得ることができる。</p>
+<div style="text-align: right;"><br>引用元：<a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89" target="_blank" rel="external">フィード - Wikipedia</a><br></div>
+
 </blockquote>
 <p>となっています。<br>ウェブサイトを配信用に加工したものを<strong>フィード</strong>、それを読者が<strong>フィードリーダー</strong>に登録しておけば更新されたときに通知される。というシステムだと考えています。</p>
 <h3 id="数種類のフォーマットが存在する"><a href="#数種類のフォーマットが存在する" class="headerlink" title="数種類のフォーマットが存在する"></a>数種類のフォーマットが存在する</h3><p>Wikipediaでは・・・</p>
@@ -270,7 +366,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://debugon.git.io/Programming/Hexo/cj32njecf000290fxdtwswj07/" data-id="cj32njecf000290fxdtwswj07" class="article-share-link">Share</a>
+        <a data-url="http://debugon.git.io/Programming/Hexo/cj80ck9kr0005wsgr6ke03dxb/" data-id="cj80ck9kr0005wsgr6ke03dxb" class="article-share-link">Share</a>
       
       
       
@@ -287,7 +383,7 @@
   
     <article id="post-hexo-theme" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Programming/Hexo/cj32njecr000790fx9prfzsab/" class="article-date">
+    <a href="/Programming/Hexo/cj80ck9kk0001wsgrp6pdbves/" class="article-date">
   <time datetime="2017-05-09T02:42:11.000Z" itemprop="datePublished">2017-05-09</time>
 </a>
 
@@ -306,7 +402,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Programming/Hexo/cj32njecr000790fx9prfzsab/">Hexoでブログにテーマを設定する話</a>
+      <a class="article-title" href="/Programming/Hexo/cj80ck9kk0001wsgrp6pdbves/">Hexoでブログにテーマを設定する話</a>
     </h1>
   
 
@@ -318,13 +414,13 @@
         <div class="article-sharing">
   <ul>
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj32njecr000790fx9prfzsab/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj80ck9kk0001wsgrp6pdbves/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj32njecr000790fx9prfzsab/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj32njecr000790fx9prfzsab/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj80ck9kk0001wsgrp6pdbves/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj80ck9kk0001wsgrp6pdbves/" >Tweet</a>
     </li>
     <li>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj32njecr000790fx9prfzsab/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj80ck9kk0001wsgrp6pdbves/"></div>
     </li>
   </ul>
 </div>
@@ -360,7 +456,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://debugon.git.io/Programming/Hexo/cj32njecr000790fx9prfzsab/" data-id="cj32njecr000790fx9prfzsab" class="article-share-link">Share</a>
+        <a data-url="http://debugon.git.io/Programming/Hexo/cj80ck9kk0001wsgrp6pdbves/" data-id="cj80ck9kk0001wsgrp6pdbves" class="article-share-link">Share</a>
       
       
       
@@ -377,7 +473,7 @@
   
     <article id="post-hexo-setup" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Programming/Hexo/cj32njecf000190fxqcs6hok8/" class="article-date">
+    <a href="/Programming/Hexo/cj80ck9kf0000wsgrlibv4sbp/" class="article-date">
   <time datetime="2017-04-27T10:39:12.000Z" itemprop="datePublished">2017-04-27</time>
 </a>
 
@@ -396,7 +492,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Programming/Hexo/cj32njecf000190fxqcs6hok8/">GitHub PagesとHexoで作る静的サイトブログ</a>
+      <a class="article-title" href="/Programming/Hexo/cj80ck9kf0000wsgrlibv4sbp/">GitHub PagesとHexoで作る静的サイトブログ</a>
     </h1>
   
 
@@ -408,13 +504,13 @@
         <div class="article-sharing">
   <ul>
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj32njecf000190fxqcs6hok8/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj80ck9kf0000wsgrlibv4sbp/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj32njecf000190fxqcs6hok8/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj32njecf000190fxqcs6hok8/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj80ck9kf0000wsgrlibv4sbp/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj80ck9kf0000wsgrlibv4sbp/" >Tweet</a>
     </li>
     <li>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj32njecf000190fxqcs6hok8/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj80ck9kf0000wsgrlibv4sbp/"></div>
     </li>
   </ul>
 </div>
@@ -458,7 +554,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://debugon.git.io/Programming/Hexo/cj32njecf000190fxqcs6hok8/" data-id="cj32njecf000190fxqcs6hok8" class="article-share-link">Share</a>
+        <a data-url="http://debugon.git.io/Programming/Hexo/cj80ck9kf0000wsgrlibv4sbp/" data-id="cj80ck9kf0000wsgrlibv4sbp" class="article-share-link">Share</a>
       
       
       
@@ -475,7 +571,7 @@
   
     <article id="post-blog-start" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Blog/cj32njecn000590fxlgo069x6/" class="article-date">
+    <a href="/Blog/cj80ck9kp0004wsgr3wuwa6tn/" class="article-date">
   <time datetime="2017-04-24T18:41:14.000Z" itemprop="datePublished">2017-04-25</time>
 </a>
 
@@ -494,7 +590,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Blog/cj32njecn000590fxlgo069x6/">GitHub + Hexo でブログを立ててみたお話</a>
+      <a class="article-title" href="/Blog/cj80ck9kp0004wsgr3wuwa6tn/">GitHub + Hexo でブログを立ててみたお話</a>
     </h1>
   
 
@@ -506,13 +602,13 @@
         <div class="article-sharing">
   <ul>
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Blog/cj32njecn000590fxlgo069x6/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Blog/cj80ck9kp0004wsgr3wuwa6tn/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Blog/cj32njecn000590fxlgo069x6/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Blog/cj32njecn000590fxlgo069x6/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Blog/cj80ck9kp0004wsgr3wuwa6tn/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Blog/cj80ck9kp0004wsgr3wuwa6tn/" >Tweet</a>
     </li>
     <li>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Blog/cj32njecn000590fxlgo069x6/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Blog/cj80ck9kp0004wsgr3wuwa6tn/"></div>
     </li>
   </ul>
 </div>
@@ -531,82 +627,12 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://debugon.git.io/Blog/cj32njecn000590fxlgo069x6/" data-id="cj32njecn000590fxlgo069x6" class="article-share-link">Share</a>
+        <a data-url="http://debugon.git.io/Blog/cj80ck9kp0004wsgr3wuwa6tn/" data-id="cj80ck9kp0004wsgr3wuwa6tn" class="article-share-link">Share</a>
       
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
 
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/uncategorized/cj32njean000090fx7r6ity30/" class="article-date">
-  <time datetime="2017-04-24T18:11:40.637Z" itemprop="datePublished">2017-04-25</time>
-</a>
-
-    
-
-  </div>
-  <div class="article-inner">
-    
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/uncategorized/cj32njean000090fx7r6ity30/">Hello World</a>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div class="article-sharing">
-  <ul>
-    <li>
-      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/uncategorized/cj32njean000090fx7r6ity30/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    </li>
-    <li>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/uncategorized/cj32njean000090fx7r6ity30/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/uncategorized/cj32njean000090fx7r6ity30/" >Tweet</a>
-    </li>
-    <li>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/uncategorized/cj32njean000090fx7r6ity30/"></div>
-    </li>
-  </ul>
-</div>
-
-      
-      
-        
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://debugon.git.io/uncategorized/cj32njean000090fx7r6ity30/" data-id="cj32njean000090fx7r6ity30" class="article-share-link">Share</a>
-      
-      
-      
 
     </footer>
   </div>
@@ -649,7 +675,7 @@
   <div class="widget-wrap">
     <h3 id="widget-title-category" class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/Hexo/">Hexo</a><span class="category-list-count">4</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/Hexo/">Hexo</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/Hexo/TravisCI/">TravisCI</a><span class="category-list-count">1</span></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -659,7 +685,7 @@
   <div class="widget-wrap">
     <h3 id="widget-title-tag" class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TravisCI/">TravisCI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a><span class="tag-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -669,7 +695,7 @@
   <div class="widget-wrap">
     <h3 id="widget-title-tagcloud" class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/GitHub/" style="font-size: 13.33px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/YAML/" style="font-size: 16.67px;">YAML</a>
+      <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/GitHub/" style="font-size: 13.33px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/TravisCI/" style="font-size: 10px;">TravisCI</a> <a href="/tags/YAML/" style="font-size: 16.67px;">YAML</a>
     </div>
   </div>
 
@@ -679,7 +705,7 @@
   <div class="widget-wrap">
     <h3 id="widget-title-archive" class="widget-title" data-skip-mobile-nav="true">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -692,23 +718,23 @@
       <ul>
         
           <li>
-            <a href="/Programming/Hexo/cj32njecn000690fxb24ar30d/">Hexoで作成したブログにサイトマップを設定する話</a>
+            <a href="/Programming/Hexo/TravisCI/cj80ck9kx0009wsgrxlrdz49e/">TravisCIを利用するお話-導入編-</a>
           </li>
         
           <li>
-            <a href="/Programming/Hexo/cj32njecf000290fxdtwswj07/">Hexoで作成したブログにフィードを設定する話</a>
+            <a href="/Programming/Hexo/cj80ck9kv0006wsgr69vdlnzf/">Hexoで作成したブログにサイトマップを設定する話</a>
           </li>
         
           <li>
-            <a href="/Programming/Hexo/cj32njecr000790fx9prfzsab/">Hexoでブログにテーマを設定する話</a>
+            <a href="/Programming/Hexo/cj80ck9kr0005wsgr6ke03dxb/">Hexoで作成したブログにフィードを設定する話</a>
           </li>
         
           <li>
-            <a href="/Programming/Hexo/cj32njecf000190fxqcs6hok8/">GitHub PagesとHexoで作る静的サイトブログ</a>
+            <a href="/Programming/Hexo/cj80ck9kk0001wsgrp6pdbves/">Hexoでブログにテーマを設定する話</a>
           </li>
         
           <li>
-            <a href="/Blog/cj32njecn000590fxlgo069x6/">GitHub + Hexo でブログを立ててみたお話</a>
+            <a href="/Programming/Hexo/cj80ck9kf0000wsgrlibv4sbp/">GitHub PagesとHexoで作る静的サイトブログ</a>
           </li>
         
       </ul>
