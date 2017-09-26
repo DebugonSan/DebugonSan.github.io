@@ -16,14 +16,14 @@
     </url>
 
     <url>
-        <loc>http://debugon.git.io/tags/Markdown/</loc>
+        <loc>http://debugon.git.io/tags/Blog/</loc>
         <lastmod>2017-05-16T08:27:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://debugon.git.io/tags/Blog/</loc>
+        <loc>http://debugon.git.io/tags/Markdown/</loc>
         <lastmod>2017-05-16T08:27:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
