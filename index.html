@@ -69,9 +69,108 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-unity-android-build" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/uncategorized/cj947rij0000634grpt3g1y06/" class="article-date">
+  <time datetime="2017-10-17T00:16:04.000Z" itemprop="datePublished">2017-10-17</time>
+</a>
+
+    
+
+  </div>
+  <div class="article-inner">
+    
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/uncategorized/cj947rij0000634grpt3g1y06/">Windows Subsystem for Linuxを入れてみる</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div class="article-sharing">
+  <ul>
+    <li>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/uncategorized/cj947rij0000634grpt3g1y06/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/uncategorized/cj947rij0000634grpt3g1y06/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/uncategorized/cj947rij0000634grpt3g1y06/" >Tweet</a>
+    </li>
+    <li>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/uncategorized/cj947rij0000634grpt3g1y06/"></div>
+    </li>
+  </ul>
+</div>
+
+      
+      
+        
+        <p>ついにWindows 10 Fall Creators Updateが正式リリースされ、Windows Subsystem for Linuxが提供されました。<br>InsiderPreview版では既にベータ版を利用できたのですが、リリースの時期も近かったということもあって見送ることにしていました。<br>今回はそのWindows Subsystem for Linux（以下、WSL）を実際にインストールしてみようと思います。</p>
+<h2 id="まずは、Windows10のアップデートを"><a href="#まずは、Windows10のアップデートを" class="headerlink" title="まずは、Windows10のアップデートを"></a>まずは、Windows10のアップデートを</h2><p>早速WSLを入れたいところですが、まずはWindows10のアップデートをしなければいけません。<br>使っているPCのバージョン（ビルド）を確認しましょう。</p>
+<p><code>Windowsの設定＞更新とセキュリティ＞Windows Update＞OSビルド情報</code>と進むことで現在使用しているPCのバージョンを確認することができます。</p>
+<p><img src="..\..\..\img\windows_build.png"></p>
+<p>この<code>OSビルド</code>とい番号が<code>16299</code>以上になっていることを確認してください。<br>もしそうでなければ古いバージョンが入っていますので、Winodws Updateに戻って更新しましょう。</p>
+<h2 id="WSLの有効化"><a href="#WSLの有効化" class="headerlink" title="WSLの有効化"></a>WSLの有効化</h2><p>現在WSLはコマンドプロンプトとストア版から利用することができます。<br>しかし、それらを利用する前に<code>Windowsの機能の有効化</code>からWSLの機能を有効化し追加してあげる必要があります。</p>
+<p><code>Windowsの設定＞アプリ＞アプリと機能＞プログラムと機能</code>から従来のプログラムの追加と削除の画面を開くことができます。</p>
+<p><img src="..\..\..\img\program_list.png"></p>
+<p>ここからさらに<code>Windowsの機能の有効化または無効化</code>を開いて、WSLを有効化します。</p>
+<p><img src="..\..\..\img\windows_apps.png"></p>
+<p>OKをクリックすると、必要なツールのインストールが始まりますので気長に待ちましょう。<br>私はそのままWSLを起動しましたが、終わったら念のために再起動を掛けたほうがいいかもしれません。</p>
+<h2 id="ストア版Ubuntuの入手"><a href="#ストア版Ubuntuの入手" class="headerlink" title="ストア版Ubuntuの入手"></a>ストア版Ubuntuの入手</h2><p>当初bashコマンドでのインストールを知らなかったため、ストア経由でWSLをインストールしました。<br>Windowsストアを開き<code>Ubuntu</code>で検索するとカノニカル社が提供しているUbutuアプリがあると思いますので、こちらをインストールすることでUbuntu版のWSLを使用することができるようになります。<br>もしインストールできないようであれば、Windowsのバージョンが古いと思いますのでアップデートを確認してみてください。</p>
+<p><img src="..\..\..\img\wsl_ubuntu.png"></p>
+<h2 id="Windows-Subsystem-for-Linuxの起動"><a href="#Windows-Subsystem-for-Linuxの起動" class="headerlink" title="Windows Subsystem for Linuxの起動"></a>Windows Subsystem for Linuxの起動</h2><p>早速、インストールされたアプリを起動してみましょう。<br>設定が済んでいれば、Ubuntuのインストールを促されるはずです。<br>もしエラーメッセージが出ているようであれば、WSLの有効化が済んでいないと思われますのでもう一度見直してみてください。</p>
+<p>Ubuntuのインストールの際に</p>
+<ul>
+<li>ユーザ名</li>
+<li>パスワード</li>
+</ul>
+<p>を要求されますが、これは使用中のWindowsのパスワードではなく新たにUbuntuに設定するものなので同一にする必要はありません。</p>
+<p><img src="..\..\..\img\wsl_install.png"></p>
+<p>インストールが完了すればWSLの導入は終了となります。</p>
+<h2 id="少し弄ってみた"><a href="#少し弄ってみた" class="headerlink" title="少し弄ってみた"></a>少し弄ってみた</h2><p><code>sudo apt update</code>でアップデートをやってみます。<br>結構アップデート対象が多くてびっくりしました。</p>
+<p><img src="..\..\..\img\apt_update.png"></p>
+<p>終わると<code>apt list --upgradable</code>を実行しろと言われたんで、実行して更新されたものを確認してみました。</p>
+<p><img src="..\..\..\img\apt_list.png"></p>
+<p>リストを見てみると最初からgccやgitなどが突っ込まれていましたが、気づかないで普通にアップデートしちゃいました・・・</p>
+<h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>WSLはLinuxやUNIXのようにターミナルをよく使ってる方なら非常に魅力的なのではないでしょうか。<br>私はどちらかというとUbuntu自体に興味があったところからインストールしてみようとなった口なので何とも言えませんが、いまだ勉強不足なところがありますので当分はGit Bashかなと思っています。</p>
+<font color="White">ついにUbuntuがWindowsに入ったぜえええええええええええええええええ！！！！</font><br><font color="White">といっても、UbuntuのロゴがだいしゅきマンなのでいつかサブPCにUbuntuを突っ込んで弄りまくりたいですねー（ぶぃ</font>
+
+
+<!--
+><div style="text-align: right;">
+引用元：[name](https://)
+</div>
+<img src="..\..\..\img\" />
+<font color="White"></font>
+-->
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://debugon.git.io/uncategorized/cj947rij0000634grpt3g1y06/" data-id="cj947rij0000634grpt3g1y06" class="article-share-link">Share</a>
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-travis-lang" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Programming/TravisCI/cj8120mt90006b8gra70kdyma/" class="article-date">
+    <a href="/Programming/TravisCI/cj947rij0000734gr2xs8x762/" class="article-date">
   <time datetime="2017-09-25T15:57:49.000Z" itemprop="datePublished">2017-09-26</time>
 </a>
 
@@ -90,7 +189,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Programming/TravisCI/cj8120mt90006b8gra70kdyma/">TravisCIを利用するお話-言語編-</a>
+      <a class="article-title" href="/Programming/TravisCI/cj947rij0000734gr2xs8x762/">TravisCIを利用するお話-言語編-</a>
     </h1>
   
 
@@ -102,13 +201,13 @@
         <div class="article-sharing">
   <ul>
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/TravisCI/cj8120mt90006b8gra70kdyma/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/TravisCI/cj947rij0000734gr2xs8x762/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/TravisCI/cj8120mt90006b8gra70kdyma/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/TravisCI/cj8120mt90006b8gra70kdyma/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/TravisCI/cj947rij0000734gr2xs8x762/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/TravisCI/cj947rij0000734gr2xs8x762/" >Tweet</a>
     </li>
     <li>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/TravisCI/cj8120mt90006b8gra70kdyma/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/TravisCI/cj947rij0000734gr2xs8x762/"></div>
     </li>
   </ul>
 </div>
@@ -135,7 +234,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://debugon.git.io/Programming/TravisCI/cj8120mt90006b8gra70kdyma/" data-id="cj8120mt90006b8gra70kdyma" class="article-share-link">Share</a>
+        <a data-url="http://debugon.git.io/Programming/TravisCI/cj947rij0000734gr2xs8x762/" data-id="cj947rij0000734gr2xs8x762" class="article-share-link">Share</a>
       
       
       
@@ -152,7 +251,7 @@
   
     <article id="post-travis-ci" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Programming/TravisCI/cj8120mt50004b8grx77ts1ff/" class="article-date">
+    <a href="/Programming/TravisCI/cj947rij0000b34gro4xsxorg/" class="article-date">
   <time datetime="2017-06-14T02:32:17.000Z" itemprop="datePublished">2017-06-14</time>
 </a>
 
@@ -171,7 +270,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Programming/TravisCI/cj8120mt50004b8grx77ts1ff/">TravisCIを利用するお話-導入編-</a>
+      <a class="article-title" href="/Programming/TravisCI/cj947rij0000b34gro4xsxorg/">TravisCIを利用するお話-導入編-</a>
     </h1>
   
 
@@ -183,13 +282,13 @@
         <div class="article-sharing">
   <ul>
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/TravisCI/cj8120mt50004b8grx77ts1ff/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/TravisCI/cj947rij0000b34gro4xsxorg/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/TravisCI/cj8120mt50004b8grx77ts1ff/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/TravisCI/cj8120mt50004b8grx77ts1ff/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/TravisCI/cj947rij0000b34gro4xsxorg/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/TravisCI/cj947rij0000b34gro4xsxorg/" >Tweet</a>
     </li>
     <li>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/TravisCI/cj8120mt50004b8grx77ts1ff/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/TravisCI/cj947rij0000b34gro4xsxorg/"></div>
     </li>
   </ul>
 </div>
@@ -228,7 +327,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://debugon.git.io/Programming/TravisCI/cj8120mt50004b8grx77ts1ff/" data-id="cj8120mt50004b8grx77ts1ff" class="article-share-link">Share</a>
+        <a data-url="http://debugon.git.io/Programming/TravisCI/cj947rij0000b34gro4xsxorg/" data-id="cj947rij0000b34gro4xsxorg" class="article-share-link">Share</a>
       
       
       
@@ -245,7 +344,7 @@
   
     <article id="post-hexo-sitemaps" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Programming/Hexo/cj8120mt70005b8grgx0g0rni/" class="article-date">
+    <a href="/Programming/Hexo/cj947riik000134grr6i8y4hs/" class="article-date">
   <time datetime="2017-05-24T03:27:11.000Z" itemprop="datePublished">2017-05-24</time>
 </a>
 
@@ -264,7 +363,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Programming/Hexo/cj8120mt70005b8grgx0g0rni/">Hexoで作成したブログにサイトマップを設定する話</a>
+      <a class="article-title" href="/Programming/Hexo/cj947riik000134grr6i8y4hs/">Hexoで作成したブログにサイトマップを設定する話</a>
     </h1>
   
 
@@ -276,13 +375,13 @@
         <div class="article-sharing">
   <ul>
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj8120mt70005b8grgx0g0rni/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj947riik000134grr6i8y4hs/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj8120mt70005b8grgx0g0rni/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj8120mt70005b8grgx0g0rni/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj947riik000134grr6i8y4hs/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj947riik000134grr6i8y4hs/" >Tweet</a>
     </li>
     <li>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj8120mt70005b8grgx0g0rni/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj947riik000134grr6i8y4hs/"></div>
     </li>
   </ul>
 </div>
@@ -353,7 +452,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://debugon.git.io/Programming/Hexo/cj8120mt70005b8grgx0g0rni/" data-id="cj8120mt70005b8grgx0g0rni" class="article-share-link">Share</a>
+        <a data-url="http://debugon.git.io/Programming/Hexo/cj947riik000134grr6i8y4hs/" data-id="cj947riik000134grr6i8y4hs" class="article-share-link">Share</a>
       
       
       
@@ -370,7 +469,7 @@
   
     <article id="post-hexo-feed" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Programming/Hexo/cj8120msv0000b8grt4xxynat/" class="article-date">
+    <a href="/Programming/Hexo/cj947riik000534gr78il1rme/" class="article-date">
   <time datetime="2017-05-18T11:53:31.000Z" itemprop="datePublished">2017-05-18</time>
 </a>
 
@@ -389,7 +488,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Programming/Hexo/cj8120msv0000b8grt4xxynat/">Hexoで作成したブログにフィードを設定する話</a>
+      <a class="article-title" href="/Programming/Hexo/cj947riik000534gr78il1rme/">Hexoで作成したブログにフィードを設定する話</a>
     </h1>
   
 
@@ -401,13 +500,13 @@
         <div class="article-sharing">
   <ul>
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj8120msv0000b8grt4xxynat/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj947riik000534gr78il1rme/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj8120msv0000b8grt4xxynat/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj8120msv0000b8grt4xxynat/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj947riik000534gr78il1rme/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj947riik000534gr78il1rme/" >Tweet</a>
     </li>
     <li>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj8120msv0000b8grt4xxynat/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj947riik000534gr78il1rme/"></div>
     </li>
   </ul>
 </div>
@@ -447,7 +546,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://debugon.git.io/Programming/Hexo/cj8120msv0000b8grt4xxynat/" data-id="cj8120msv0000b8grt4xxynat" class="article-share-link">Share</a>
+        <a data-url="http://debugon.git.io/Programming/Hexo/cj947riik000534gr78il1rme/" data-id="cj947riik000534gr78il1rme" class="article-share-link">Share</a>
       
       
       
@@ -464,7 +563,7 @@
   
     <article id="post-hexo-theme" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Programming/Hexo/cj8120mt00001b8grr4bzwg6d/" class="article-date">
+    <a href="/Programming/Hexo/cj947riik000234grvxwvozbt/" class="article-date">
   <time datetime="2017-05-09T02:42:11.000Z" itemprop="datePublished">2017-05-09</time>
 </a>
 
@@ -483,7 +582,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Programming/Hexo/cj8120mt00001b8grr4bzwg6d/">Hexoでブログにテーマを設定する話</a>
+      <a class="article-title" href="/Programming/Hexo/cj947riik000234grvxwvozbt/">Hexoでブログにテーマを設定する話</a>
     </h1>
   
 
@@ -495,13 +594,13 @@
         <div class="article-sharing">
   <ul>
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj8120mt00001b8grr4bzwg6d/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj947riik000234grvxwvozbt/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj8120mt00001b8grr4bzwg6d/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj8120mt00001b8grr4bzwg6d/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj947riik000234grvxwvozbt/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj947riik000234grvxwvozbt/" >Tweet</a>
     </li>
     <li>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj8120mt00001b8grr4bzwg6d/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj947riik000234grvxwvozbt/"></div>
     </li>
   </ul>
 </div>
@@ -537,7 +636,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://debugon.git.io/Programming/Hexo/cj8120mt00001b8grr4bzwg6d/" data-id="cj8120mt00001b8grr4bzwg6d" class="article-share-link">Share</a>
+        <a data-url="http://debugon.git.io/Programming/Hexo/cj947riik000234grvxwvozbt/" data-id="cj947riik000234grvxwvozbt" class="article-share-link">Share</a>
       
       
       
@@ -554,7 +653,7 @@
   
     <article id="post-hexo-setup" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Programming/Hexo/cj8120mtg000ab8grhmwtculf/" class="article-date">
+    <a href="/Programming/Hexo/cj947rijg000e34grd996yjl2/" class="article-date">
   <time datetime="2017-04-27T10:39:12.000Z" itemprop="datePublished">2017-04-27</time>
 </a>
 
@@ -573,7 +672,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Programming/Hexo/cj8120mtg000ab8grhmwtculf/">GitHub PagesとHexoで作る静的サイトブログ</a>
+      <a class="article-title" href="/Programming/Hexo/cj947rijg000e34grd996yjl2/">GitHub PagesとHexoで作る静的サイトブログ</a>
     </h1>
   
 
@@ -585,13 +684,13 @@
         <div class="article-sharing">
   <ul>
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj8120mtg000ab8grhmwtculf/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Programming/Hexo/cj947rijg000e34grd996yjl2/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj8120mtg000ab8grhmwtculf/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj8120mtg000ab8grhmwtculf/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Programming/Hexo/cj947rijg000e34grd996yjl2/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Programming/Hexo/cj947rijg000e34grd996yjl2/" >Tweet</a>
     </li>
     <li>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj8120mtg000ab8grhmwtculf/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Programming/Hexo/cj947rijg000e34grd996yjl2/"></div>
     </li>
   </ul>
 </div>
@@ -635,7 +734,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://debugon.git.io/Programming/Hexo/cj8120mtg000ab8grhmwtculf/" data-id="cj8120mtg000ab8grhmwtculf" class="article-share-link">Share</a>
+        <a data-url="http://debugon.git.io/Programming/Hexo/cj947rijg000e34grd996yjl2/" data-id="cj947rijg000e34grd996yjl2" class="article-share-link">Share</a>
       
       
       
@@ -652,7 +751,7 @@
   
     <article id="post-blog-start" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Blog/cj8120mtc0009b8gr5twbeepg/" class="article-date">
+    <a href="/Blog/cj947rij0000a34gr0oztqzng/" class="article-date">
   <time datetime="2017-04-24T18:41:14.000Z" itemprop="datePublished">2017-04-25</time>
 </a>
 
@@ -671,7 +770,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Blog/cj8120mtc0009b8gr5twbeepg/">GitHub + Hexo でブログを立ててみたお話</a>
+      <a class="article-title" href="/Blog/cj947rij0000a34gr0oztqzng/">GitHub + Hexo でブログを立ててみたお話</a>
     </h1>
   
 
@@ -683,13 +782,13 @@
         <div class="article-sharing">
   <ul>
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Blog/cj8120mtc0009b8gr5twbeepg/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Blog/cj947rij0000a34gr0oztqzng/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Blog/cj8120mtc0009b8gr5twbeepg/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Blog/cj8120mtc0009b8gr5twbeepg/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Blog/cj947rij0000a34gr0oztqzng/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Blog/cj947rij0000a34gr0oztqzng/" >Tweet</a>
     </li>
     <li>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Blog/cj8120mtc0009b8gr5twbeepg/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Blog/cj947rij0000a34gr0oztqzng/"></div>
     </li>
   </ul>
 </div>
@@ -708,7 +807,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://debugon.git.io/Blog/cj8120mtc0009b8gr5twbeepg/" data-id="cj8120mtc0009b8gr5twbeepg" class="article-share-link">Share</a>
+        <a data-url="http://debugon.git.io/Blog/cj947rij0000a34gr0oztqzng/" data-id="cj947rij0000a34gr0oztqzng" class="article-share-link">Share</a>
       
       
       
@@ -786,7 +885,7 @@
   <div class="widget-wrap">
     <h3 id="widget-title-archive" class="widget-title" data-skip-mobile-nav="true">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -799,23 +898,23 @@
       <ul>
         
           <li>
-            <a href="/Programming/TravisCI/cj8120mt90006b8gra70kdyma/">TravisCIを利用するお話-言語編-</a>
+            <a href="/uncategorized/cj947rij0000634grpt3g1y06/">Windows Subsystem for Linuxを入れてみる</a>
           </li>
         
           <li>
-            <a href="/Programming/TravisCI/cj8120mt50004b8grx77ts1ff/">TravisCIを利用するお話-導入編-</a>
+            <a href="/Programming/TravisCI/cj947rij0000734gr2xs8x762/">TravisCIを利用するお話-言語編-</a>
           </li>
         
           <li>
-            <a href="/Programming/Hexo/cj8120mt70005b8grgx0g0rni/">Hexoで作成したブログにサイトマップを設定する話</a>
+            <a href="/Programming/TravisCI/cj947rij0000b34gro4xsxorg/">TravisCIを利用するお話-導入編-</a>
           </li>
         
           <li>
-            <a href="/Programming/Hexo/cj8120msv0000b8grt4xxynat/">Hexoで作成したブログにフィードを設定する話</a>
+            <a href="/Programming/Hexo/cj947riik000134grr6i8y4hs/">Hexoで作成したブログにサイトマップを設定する話</a>
           </li>
         
           <li>
-            <a href="/Programming/Hexo/cj8120mt00001b8grr4bzwg6d/">Hexoでブログにテーマを設定する話</a>
+            <a href="/Programming/Hexo/cj947riik000534gr78il1rme/">Hexoで作成したブログにフィードを設定する話</a>
           </li>
         
       </ul>

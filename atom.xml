@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://debugon.git.io/"/>
-  <updated>2017-09-25T17:38:26.339Z</updated>
+  <updated>2017-10-23T14:25:18.876Z</updated>
   <id>http://debugon.git.io/</id>
   
   <author>
@@ -17,9 +17,30 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Windows Subsystem for Linuxを入れてみる</title>
+    <link href="http://debugon.git.io/uncategorized/cj947rij0000634grpt3g1y06/"/>
+    <id>http://debugon.git.io/uncategorized/cj947rij0000634grpt3g1y06/</id>
+    <published>2017-10-17T00:16:04.000Z</published>
+    <updated>2017-10-23T14:25:18.876Z</updated>
+    
+    <content type="html"><![CDATA[<p>ついにWindows 10 Fall Creators Updateが正式リリースされ、Windows Subsystem for Linuxが提供されました。<br>InsiderPreview版では既にベータ版を利用できたのですが、リリースの時期も近かったということもあって見送ることにしていました。<br>今回はそのWindows Subsystem for Linux（以下、WSL）を実際にインストールしてみようと思います。</p><h2 id="まずは、Windows10のアップデートを"><a href="#まずは、Windows10のアップデートを" class="headerlink" title="まずは、Windows10のアップデートを"></a>まずは、Windows10のアップデートを</h2><p>早速WSLを入れたいところですが、まずはWindows10のアップデートをしなければいけません。<br>使っているPCのバージョン（ビルド）を確認しましょう。</p><p><code>Windowsの設定＞更新とセキュリティ＞Windows Update＞OSビルド情報</code>と進むことで現在使用しているPCのバージョンを確認することができます。</p><p><img src="..\..\..\img\windows_build.png"></p><p>この<code>OSビルド</code>とい番号が<code>16299</code>以上になっていることを確認してください。<br>もしそうでなければ古いバージョンが入っていますので、Winodws Updateに戻って更新しましょう。</p><h2 id="WSLの有効化"><a href="#WSLの有効化" class="headerlink" title="WSLの有効化"></a>WSLの有効化</h2><p>現在WSLはコマンドプロンプトとストア版から利用することができます。<br>しかし、それらを利用する前に<code>Windowsの機能の有効化</code>からWSLの機能を有効化し追加してあげる必要があります。</p><p><code>Windowsの設定＞アプリ＞アプリと機能＞プログラムと機能</code>から従来のプログラムの追加と削除の画面を開くことができます。</p><p><img src="..\..\..\img\program_list.png"></p><p>ここからさらに<code>Windowsの機能の有効化または無効化</code>を開いて、WSLを有効化します。</p><p><img src="..\..\..\img\windows_apps.png"></p><p>OKをクリックすると、必要なツールのインストールが始まりますので気長に待ちましょう。<br>私はそのままWSLを起動しましたが、終わったら念のために再起動を掛けたほうがいいかもしれません。</p><h2 id="ストア版Ubuntuの入手"><a href="#ストア版Ubuntuの入手" class="headerlink" title="ストア版Ubuntuの入手"></a>ストア版Ubuntuの入手</h2><p>当初bashコマンドでのインストールを知らなかったため、ストア経由でWSLをインストールしました。<br>Windowsストアを開き<code>Ubuntu</code>で検索するとカノニカル社が提供しているUbutuアプリがあると思いますので、こちらをインストールすることでUbuntu版のWSLを使用することができるようになります。<br>もしインストールできないようであれば、Windowsのバージョンが古いと思いますのでアップデートを確認してみてください。</p><p><img src="..\..\..\img\wsl_ubuntu.png"></p><h2 id="Windows-Subsystem-for-Linuxの起動"><a href="#Windows-Subsystem-for-Linuxの起動" class="headerlink" title="Windows Subsystem for Linuxの起動"></a>Windows Subsystem for Linuxの起動</h2><p>早速、インストールされたアプリを起動してみましょう。<br>設定が済んでいれば、Ubuntuのインストールを促されるはずです。<br>もしエラーメッセージが出ているようであれば、WSLの有効化が済んでいないと思われますのでもう一度見直してみてください。</p><p>Ubuntuのインストールの際に</p><ul><li>ユーザ名</li><li>パスワード</li></ul><p>を要求されますが、これは使用中のWindowsのパスワードではなく新たにUbuntuに設定するものなので同一にする必要はありません。</p><p><img src="..\..\..\img\wsl_install.png"></p><p>インストールが完了すればWSLの導入は終了となります。</p><h2 id="少し弄ってみた"><a href="#少し弄ってみた" class="headerlink" title="少し弄ってみた"></a>少し弄ってみた</h2><p><code>sudo apt update</code>でアップデートをやってみます。<br>結構アップデート対象が多くてびっくりしました。</p><p><img src="..\..\..\img\apt_update.png"></p><p>終わると<code>apt list --upgradable</code>を実行しろと言われたんで、実行して更新されたものを確認してみました。</p><p><img src="..\..\..\img\apt_list.png"></p><p>リストを見てみると最初からgccやgitなどが突っ込まれていましたが、気づかないで普通にアップデートしちゃいました・・・</p><h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>WSLはLinuxやUNIXのようにターミナルをよく使ってる方なら非常に魅力的なのではないでしょうか。<br>私はどちらかというとUbuntu自体に興味があったところからインストールしてみようとなった口なので何とも言えませんが、いまだ勉強不足なところがありますので当分はGit Bashかなと思っています。</p><font color="White">ついにUbuntuがWindowsに入ったぜえええええええええええええええええ！！！！</font><br><font color="White">といっても、UbuntuのロゴがだいしゅきマンなのでいつかサブPCにUbuntuを突っ込んで弄りまくりたいですねー（ぶぃ</font><!--><div style="text-align: right;">引用元：[name](https://)</div><img src="..\..\..\img\" /><font color="White"></font>-->]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;ついにWindows 10 Fall Creators Updateが正式リリースされ、Windows Subsystem for Linuxが提供されました。&lt;br&gt;InsiderPreview版では既にベータ版を利用できたのですが、リリースの時期も近かったということもあ
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>TravisCIを利用するお話-言語編-</title>
-    <link href="http://debugon.git.io/Programming/TravisCI/cj8120mt90006b8gra70kdyma/"/>
-    <id>http://debugon.git.io/Programming/TravisCI/cj8120mt90006b8gra70kdyma/</id>
+    <link href="http://debugon.git.io/Programming/TravisCI/cj947rij0000734gr2xs8x762/"/>
+    <id>http://debugon.git.io/Programming/TravisCI/cj947rij0000734gr2xs8x762/</id>
     <published>2017-09-25T15:57:49.000Z</published>
     <updated>2017-09-25T17:38:26.339Z</updated>
     
@@ -48,8 +69,8 @@
   
   <entry>
     <title>TravisCIを利用するお話-導入編-</title>
-    <link href="http://debugon.git.io/Programming/TravisCI/cj8120mt50004b8grx77ts1ff/"/>
-    <id>http://debugon.git.io/Programming/TravisCI/cj8120mt50004b8grx77ts1ff/</id>
+    <link href="http://debugon.git.io/Programming/TravisCI/cj947rij0000b34gro4xsxorg/"/>
+    <id>http://debugon.git.io/Programming/TravisCI/cj947rij0000b34gro4xsxorg/</id>
     <published>2017-06-14T02:32:17.000Z</published>
     <updated>2017-09-25T17:34:01.287Z</updated>
     
@@ -78,8 +99,8 @@
   
   <entry>
     <title>Hexoで作成したブログにサイトマップを設定する話</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj8120mt70005b8grgx0g0rni/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj8120mt70005b8grgx0g0rni/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj947riik000134grr6i8y4hs/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj947riik000134grr6i8y4hs/</id>
     <published>2017-05-24T03:27:11.000Z</published>
     <updated>2017-05-24T07:33:56.000Z</updated>
     
@@ -107,8 +128,8 @@
   
   <entry>
     <title>Hexoで作成したブログにフィードを設定する話</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj8120msv0000b8grt4xxynat/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj8120msv0000b8grt4xxynat/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj947riik000534gr78il1rme/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj947riik000534gr78il1rme/</id>
     <published>2017-05-18T11:53:31.000Z</published>
     <updated>2017-05-31T02:11:48.000Z</updated>
     
@@ -137,8 +158,8 @@
   
   <entry>
     <title>Hexoでブログにテーマを設定する話</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj8120mt00001b8grr4bzwg6d/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj8120mt00001b8grr4bzwg6d/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj947riik000234grvxwvozbt/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj947riik000234grvxwvozbt/</id>
     <published>2017-05-09T02:42:11.000Z</published>
     <updated>2017-05-16T08:02:54.000Z</updated>
     
@@ -171,8 +192,8 @@
   
   <entry>
     <title>GitHub PagesとHexoで作る静的サイトブログ</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj8120mtg000ab8grhmwtculf/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj8120mtg000ab8grhmwtculf/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj947rijg000e34grd996yjl2/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj947rijg000e34grd996yjl2/</id>
     <published>2017-04-27T10:39:12.000Z</published>
     <updated>2017-05-16T08:27:07.000Z</updated>
     
@@ -207,8 +228,8 @@
   
   <entry>
     <title>GitHub + Hexo でブログを立ててみたお話</title>
-    <link href="http://debugon.git.io/Blog/cj8120mtc0009b8gr5twbeepg/"/>
-    <id>http://debugon.git.io/Blog/cj8120mtc0009b8gr5twbeepg/</id>
+    <link href="http://debugon.git.io/Blog/cj947rij0000a34gr0oztqzng/"/>
+    <id>http://debugon.git.io/Blog/cj947rij0000a34gr0oztqzng/</id>
     <published>2017-04-24T18:41:14.000Z</published>
     <updated>2017-05-16T08:27:07.000Z</updated>
     
