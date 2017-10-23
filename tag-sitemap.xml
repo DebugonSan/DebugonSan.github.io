@@ -16,14 +16,14 @@
     </url>
 
     <url>
-        <loc>http://debugon.git.io/tags/Blog/</loc>
+        <loc>http://debugon.git.io/tags/Markdown/</loc>
         <lastmod>2017-05-16T08:27:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://debugon.git.io/tags/Markdown/</loc>
+        <loc>http://debugon.git.io/tags/Blog/</loc>
         <lastmod>2017-05-16T08:27:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -46,6 +46,20 @@
     <url>
         <loc>http://debugon.git.io/tags/TravisCI/</loc>
         <lastmod>2017-09-25T17:38:26.339Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://debugon.git.io/tags/WSL/</loc>
+        <lastmod>2017-10-23T14:28:25.916Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://debugon.git.io/tags/Linux/</loc>
+        <lastmod>2017-10-23T14:28:25.916Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
