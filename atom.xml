@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://debugon.git.io/"/>
-  <updated>2017-10-23T14:28:25.916Z</updated>
+  <updated>2017-10-30T21:06:23.161Z</updated>
   <id>http://debugon.git.io/</id>
   
   <author>
@@ -17,9 +17,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Unityで話題のTangoを動かしてみる</title>
+    <link href="http://debugon.git.io/uncategorized/cj9eocywf000fpsgrewoeyw76/"/>
+    <id>http://debugon.git.io/uncategorized/cj9eocywf000fpsgrewoeyw76/</id>
+    <published>2017-10-30T18:41:37.000Z</published>
+    <updated>2017-10-30T21:06:23.161Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="..\..\..\img\tango-home.png"></p><p>つい最近CEATECのお話を聞く機会があり、ARやMR（MixedReality）に力を入れている企業が多いという話をされていました。<br>特にGoogleとMicrosoftが結構プッシュしているようで、GoogleはTangoというAR技術を開発し、MicrosoftはOSレベルでMRの開発キットを機能として盛り込むなどといった動きを見せています。</p><p>私もGoogleTango対応の端末をお借りする機会があったので、試しにUnityでサンプルを動かしてみたいと思います。</p><h2 id="Tangoについて"><a href="#Tangoについて" class="headerlink" title="Tangoについて"></a>Tangoについて</h2><p>Googleの公開しているTangoは3つのカメラと赤外線を用いることで非常に高精度な空間認識を持ち味としているようで、既存の技術とは大きく違って空間の深度というものを採れるようです。<br>赤外線でレイキャストをしているみたいなんですが、詳しくはGoogleが公開しているTangoのPVをご覧になってください。</p><h3 id="対応機種について"><a href="#対応機種について" class="headerlink" title="対応機種について"></a>対応機種について</h3><p><img src="..\..\..\img\tango-device.png"></p><p>現在GoogleTangoに対応している端末は２種のみですが、CEATECを終えた今はTangoの知名度も上がったと思いますので今後に期待しましょう。</p><ol><li>Lenovo Phab 2 Pro</li><li>ASUS ZenFone AR</li></ol><p>どちらも大型のスマートフォン、もといファブレットに近いサイズですね・・・<br>カメラを３つも積んでいるので仕方がないですが、持ち運びや日常利用には結構大きいのではないでしょうか。</p><h2 id="Tangoの導入"><a href="#Tangoの導入" class="headerlink" title="Tangoの導入"></a>Tangoの導入</h2><p>ここからはTangoをUnity環境に導入する手順について説明したいと思います。<br>UnityとAndroidビルドの設定は終わっているとして話を進めます。<br>（近いうちにAndroidのビルド環境の記事を書こうと考えていますので、合わせて読んでいただけると幸いです。）</p><p>手順としては以下の通りになります。</p><ol><li>Tangoの入手</li><li>Tangoのインポート</li><li>Tangoのビルド設定</li></ol><h3 id="1-Tangoの入手"><a href="#1-Tangoの入手" class="headerlink" title="1. Tangoの入手"></a>1. Tangoの入手</h3><p>まず初めにTangoのパッケージを入手しなければいけません。<br>公式サイト右上の<code>デベロッパー</code>から各言語のSDKを選択できます。<br>今回はUnityで作りますのでUnitySDKの詳細から取得しましょう。</p><p><img src="..\..\..\img\tango-unity.jpg"></p><p>詳細から進んでもUnity専用のページではなく似たような画面が出ますので、<code>使ってみる</code>をクリックしてドキュメントに移動します。</p><p><img src="..\..\..\img\tango-howto.png"></p><p>進むと上記のようなページに移動しますが、ここではTangoを動かす際のUnityの設定と必須環境が記載されています。</p><ul><li>API Levelが17以上のAndroid SDK</li><li>Unity5.2.1以降のUnity</li><li>Unity向けのTango SDK</li><li>Google USB Driver</li></ul><p><code>API Lebel...</code>と<code>Tango Unity SDK</code>を除けば、大体はUnityでAndroidアプリをビルドするときに環境が整っていると思います。<br>ページの<code>Tango Unity SDK</code>からダウンロードページに行くことで、ようやくTangoSDKをダウンロードすることができます。</p><p><img src="..\..\..\img\tango-sdk.jpg"></p><p><code>Tango SDK for Unity</code>をクリックして最新のSDKを落としましょう。<br><code>.unitypackage</code>形式でダウンロードされるので、Unityを開いていると自動的に開いているプロジェクトにインポートされます。<br>「このプロジェクトはダメ！」という場合はあらかじめUnityを閉じでおくか、キャンセルしてください。</p><h3 id="2-Tangoのインポート"><a href="#2-Tangoのインポート" class="headerlink" title="2. Tangoのインポート"></a>2. Tangoのインポート</h3><p>TangoSDKを落としましたら、Unityで3Dプロジェクトを新規作成してください。<br>今回はUnity2017.2で作ってみます。（Unityの導入記事もそれで書いていましたので）<br>プロジェクト名は<code>hoge</code>で作成しました。<br>開発画面に来ましたら、さっそく先ほどダウンロードしたパッケージをインポートします。<br><code>Assets &gt; Import Package &gt; Custom Package...</code>から<code>.unitypackage</code>形式のパッケージをインポートできます。</p><p><img src="..\..\..\img\unity-import.jpg"></p><p>パッケージを開くとインポートされるリストが表示されますので、問題がないようでしたら<code>Import</code>をクリックしてインポートしてしまいましょう。<br>インポートが終わると画面下部のAssets以下にいろいろ追加されますので、一度確認しましょう。</p><p><img src="..\..\..\img\unity-tango-files.png"><br>このようになっているはずです。</p><h3 id="3-Tangoのビルド設定"><a href="#3-Tangoのビルド設定" class="headerlink" title="3. Tangoのビルド設定"></a>3. Tangoのビルド設定</h3><p>Tangoのアプリケーションは要件としてAndroid4.2以降でなければいけないので、Androidのビルド設定を変更する必要があります。<br><code>File&gt;Build Settings...</code>からビルド対象の設定をします。<br>まずはPlatformの箇所で<code>Android</code>をダブルクリックか選択してください。（ダブルクリックするとその時点でビルド対象がAndroidに変更されます。）<br>次に<code>Player Settings...</code>をクリックし、ビルドの設定を変更します。<br><code>Other Settings</code>を選択し、<code>Minimum API Level</code>の箇所を<code>Android 4.2 &#39;Jelly Bean&#39; (APK level 17)</code>を選びましょう。</p><p><img src="..\..\..\img\unity-android-setting.jpg"></p><p>またここで<code>Multithread Rendering</code>のチェックを外しておきます。<br>ここにチェックが入っていると、アプリケーションでカメラの映像を正しく表示できなくなるからです。<br>ついでに<code>Package Name</code>の設定も済ませていきましょう。</p><p><img src="..\..\..\img\unity-tango-setting.jpg"></p><p>最後にプラットフォームの変更をしていない場合は<code>Switch Platform</code>をクリックして、ビルド対象をAndroidに変更します。<br>以上で設定は終了ですが、Build Settingsの画面はそのまま開いておいてください。</p><h2 id="Tangoのサンプルを動かす"><a href="#Tangoのサンプルを動かす" class="headerlink" title="Tangoのサンプルを動かす"></a>Tangoのサンプルを動かす</h2><p>実際にTangoのサンプルを動かしてみます。<br><code>Assets &gt; TangoSDK &gt; Examples &gt; Scenes</code>を開き、サンプルのシーンファイルを<code>Build Settings &gt; Scenes In Build</code>に突っ込みます。<br>そのあと<code>DetectTangoCore</code>というシーンを一番上に持っていき、初めにビルドされるようにします。<br>この<code>DetectTangoCore</code>シーンが他のシーンとの切り替えを行っています。</p><p><img src="..\..\..\img\tango-sample-build.jpg"></p><p>この状態で<code>Build &amp; Run</code>しましょう。<br>動くはずです。</p><h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p><font size="5" color="Red">Unity2017.2では動きませんでした！！！</font><br>どうやらUnityのバージョンが新しすぎるのもよくないようです・・・<br>Unity5.5.5でビルドしましたら動きました。<br>このあたりの情報があまり見受けられないので、親切とは言い難いかもしれません。</p><p><img src="..\..\..\img\tango-menu.png"><br><img src="..\..\..\img\tango-tracking.png"></p><!--><div style="text-align: right;">引用元：[name](https://)</div><img src="..\..\..\img\" /><font color="White"></font>-->]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;..\..\..\img\tango-home.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;つい最近CEATECのお話を聞く機会があり、ARやMR（MixedReality）に力を入れている企業が多いという話をされていました。&lt;br&gt;特にGoogleとMicrosoftが
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Windows Subsystem for Linuxを入れてみる</title>
-    <link href="http://debugon.git.io/Linux/cj94a2azn000exkgrpxg51iff/"/>
-    <id>http://debugon.git.io/Linux/cj94a2azn000exkgrpxg51iff/</id>
+    <link href="http://debugon.git.io/Linux/cj9eocywh000hpsgrnw5ucnlb/"/>
+    <id>http://debugon.git.io/Linux/cj9eocywh000hpsgrnw5ucnlb/</id>
     <published>2017-10-17T00:16:04.000Z</published>
     <updated>2017-10-23T14:28:25.916Z</updated>
     
@@ -45,8 +67,8 @@
   
   <entry>
     <title>TravisCIを利用するお話-言語編-</title>
-    <link href="http://debugon.git.io/Programming/TravisCI/cj94a2azn0006xkgrzjg721v4/"/>
-    <id>http://debugon.git.io/Programming/TravisCI/cj94a2azn0006xkgrzjg721v4/</id>
+    <link href="http://debugon.git.io/Programming/TravisCI/cj9eocyw30007psgrq9ndkvd1/"/>
+    <id>http://debugon.git.io/Programming/TravisCI/cj9eocyw30007psgrq9ndkvd1/</id>
     <published>2017-09-25T15:57:49.000Z</published>
     <updated>2017-09-25T17:38:26.339Z</updated>
     
@@ -75,8 +97,8 @@
   
   <entry>
     <title>TravisCIを利用するお話-導入編-</title>
-    <link href="http://debugon.git.io/Programming/TravisCI/cj94a2az70002xkgrdm2uts5a/"/>
-    <id>http://debugon.git.io/Programming/TravisCI/cj94a2az70002xkgrdm2uts5a/</id>
+    <link href="http://debugon.git.io/Programming/TravisCI/cj9eocywb000bpsgr6mkcaooj/"/>
+    <id>http://debugon.git.io/Programming/TravisCI/cj9eocywb000bpsgr6mkcaooj/</id>
     <published>2017-06-14T02:32:17.000Z</published>
     <updated>2017-09-25T17:34:01.287Z</updated>
     
@@ -105,8 +127,8 @@
   
   <entry>
     <title>Hexoで作成したブログにサイトマップを設定する話</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj94a2azn000bxkgrodmqexbb/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj94a2azn000bxkgrodmqexbb/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj9eocyw6000apsgrlzkvx5yb/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj9eocyw6000apsgrlzkvx5yb/</id>
     <published>2017-05-24T03:27:11.000Z</published>
     <updated>2017-05-24T07:33:56.000Z</updated>
     
@@ -134,8 +156,8 @@
   
   <entry>
     <title>Hexoで作成したブログにフィードを設定する話</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj94a2azn000axkgrb19e5uvy/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj94a2azn000axkgrb19e5uvy/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj9eocyw10006psgrnj3gsm1q/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj9eocyw10006psgrnj3gsm1q/</id>
     <published>2017-05-18T11:53:31.000Z</published>
     <updated>2017-05-31T02:11:48.000Z</updated>
     
@@ -164,8 +186,8 @@
   
   <entry>
     <title>Hexoでブログにテーマを設定する話</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj94a2azn0007xkgrwqhds74a/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj94a2azn0007xkgrwqhds74a/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj9eocyvz0005psgrsx0xzpr1/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj9eocyvz0005psgrsx0xzpr1/</id>
     <published>2017-05-09T02:42:11.000Z</published>
     <updated>2017-05-16T08:02:54.000Z</updated>
     
@@ -198,8 +220,8 @@
   
   <entry>
     <title>GitHub PagesとHexoで作る静的サイトブログ</title>
-    <link href="http://debugon.git.io/Programming/Hexo/cj94a2az70001xkgr5tbwmeh2/"/>
-    <id>http://debugon.git.io/Programming/Hexo/cj94a2az70001xkgr5tbwmeh2/</id>
+    <link href="http://debugon.git.io/Programming/Hexo/cj9eocyvs0002psgr797wuu9i/"/>
+    <id>http://debugon.git.io/Programming/Hexo/cj9eocyvs0002psgr797wuu9i/</id>
     <published>2017-04-27T10:39:12.000Z</published>
     <updated>2017-05-16T08:27:07.000Z</updated>
     
@@ -234,8 +256,8 @@
   
   <entry>
     <title>GitHub + Hexo でブログを立ててみたお話</title>
-    <link href="http://debugon.git.io/Blog/cj94a2azn0005xkgr8a9jgn6f/"/>
-    <id>http://debugon.git.io/Blog/cj94a2azn0005xkgr8a9jgn6f/</id>
+    <link href="http://debugon.git.io/Blog/cj9eocyvp0001psgroq55rkqz/"/>
+    <id>http://debugon.git.io/Blog/cj9eocyvp0001psgroq55rkqz/</id>
     <published>2017-04-24T18:41:14.000Z</published>
     <updated>2017-05-16T08:27:07.000Z</updated>
     
@@ -253,9 +275,9 @@
       <category term="Blog" scheme="http://debugon.git.io/categories/Blog/"/>
     
     
-      <category term="Hexo" scheme="http://debugon.git.io/tags/Hexo/"/>
-    
       <category term="Blog" scheme="http://debugon.git.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="http://debugon.git.io/tags/Hexo/"/>
     
   </entry>
   

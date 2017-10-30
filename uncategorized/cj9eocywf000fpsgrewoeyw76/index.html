@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Unityで話題のTangoを動かしてみる | 名前はまだ無い。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="description" content="つい最近CEATECのお話を聞く機会があり、ARやMR（MixedReality）に力を入れている企業が多いという話をされていました。特にGoogleとMicrosoftが結構プッシュしているようで、GoogleはTangoというAR技術を開発し、MicrosoftはOSレベルでMRの開発キットを機能として盛り込むなどといった動きを見せています。 私もGoogleTango対応の端末をお借りする">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unityで話題のTangoを動かしてみる">
+<meta property="og:url" content="http://debugon.git.io/uncategorized/cj9eocywf000fpsgrewoeyw76/index.html">
+<meta property="og:site_name" content="名前はまだ無い。">
+<meta property="og:description" content="つい最近CEATECのお話を聞く機会があり、ARやMR（MixedReality）に力を入れている企業が多いという話をされていました。特にGoogleとMicrosoftが結構プッシュしているようで、GoogleはTangoというAR技術を開発し、MicrosoftはOSレベルでMRの開発キットを機能として盛り込むなどといった動きを見せています。 私もGoogleTango対応の端末をお借りする">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://debugon.git.io/img/tango-home.png">
+<meta property="og:image" content="http://debugon.git.io/img/tango-device.png">
+<meta property="og:image" content="http://debugon.git.io/img/tango-unity.jpg">
+<meta property="og:image" content="http://debugon.git.io/img/tango-howto.png">
+<meta property="og:image" content="http://debugon.git.io/img/tango-sdk.jpg">
+<meta property="og:image" content="http://debugon.git.io/img/unity-import.jpg">
+<meta property="og:image" content="http://debugon.git.io/img/unity-tango-files.png">
+<meta property="og:image" content="http://debugon.git.io/img/unity-android-setting.jpg">
+<meta property="og:image" content="http://debugon.git.io/img/unity-tango-setting.jpg">
+<meta property="og:image" content="http://debugon.git.io/img/tango-sample-build.jpg">
+<meta property="og:image" content="http://debugon.git.io/img/tango-menu.png">
+<meta property="og:image" content="http://debugon.git.io/img/tango-tracking.png">
+<meta property="og:updated_time" content="2017-10-30T21:06:23.161Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unityで話題のTangoを動かしてみる">
+<meta name="twitter:description" content="つい最近CEATECのお話を聞く機会があり、ARやMR（MixedReality）に力を入れている企業が多いという話をされていました。特にGoogleとMicrosoftが結構プッシュしているようで、GoogleはTangoというAR技術を開発し、MicrosoftはOSレベルでMRの開発キットを機能として盛り込むなどといった動きを見せています。 私もGoogleTango対応の端末をお借りする">
+<meta name="twitter:image" content="http://debugon.git.io/img/tango-home.png">
+<meta name="twitter:creator" content="@DebugonSan">
+  
+    <link rel="alternative" href="/atom.xml" title="名前はまだ無い。" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href='//fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">名前はまだ無い。</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">NO NAME is Debugon&#39;s Memo...</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        
+          <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://debugon.git.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-unity-tango-build" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/uncategorized/cj9eocywf000fpsgrewoeyw76/" class="article-date">
+  <time datetime="2017-10-30T18:41:37.000Z" itemprop="datePublished">2017-10-31</time>
+</a>
+
+    
+
+  </div>
+  <div class="article-inner">
+    
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Unityで話題のTangoを動かしてみる
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div class="article-sharing">
+  <ul>
+    <li>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/uncategorized/cj9eocywf000fpsgrewoeyw76/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/uncategorized/cj9eocywf000fpsgrewoeyw76/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/uncategorized/cj9eocywf000fpsgrewoeyw76/" >Tweet</a>
+    </li>
+    <li>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/uncategorized/cj9eocywf000fpsgrewoeyw76/"></div>
+    </li>
+  </ul>
+</div>
+
+      
+      
+        
+        <p><img src="..\..\..\img\tango-home.png"></p>
+<p>つい最近CEATECのお話を聞く機会があり、ARやMR（MixedReality）に力を入れている企業が多いという話をされていました。<br>特にGoogleとMicrosoftが結構プッシュしているようで、GoogleはTangoというAR技術を開発し、MicrosoftはOSレベルでMRの開発キットを機能として盛り込むなどといった動きを見せています。</p>
+<p>私もGoogleTango対応の端末をお借りする機会があったので、試しにUnityでサンプルを動かしてみたいと思います。</p>
+<h2 id="Tangoについて"><a href="#Tangoについて" class="headerlink" title="Tangoについて"></a>Tangoについて</h2><p>Googleの公開しているTangoは3つのカメラと赤外線を用いることで非常に高精度な空間認識を持ち味としているようで、既存の技術とは大きく違って空間の深度というものを採れるようです。<br>赤外線でレイキャストをしているみたいなんですが、詳しくはGoogleが公開しているTangoのPVをご覧になってください。</p>
+<h3 id="対応機種について"><a href="#対応機種について" class="headerlink" title="対応機種について"></a>対応機種について</h3><p><img src="..\..\..\img\tango-device.png"></p>
+<p>現在GoogleTangoに対応している端末は２種のみですが、CEATECを終えた今はTangoの知名度も上がったと思いますので今後に期待しましょう。</p>
+<ol>
+<li>Lenovo Phab 2 Pro</li>
+<li>ASUS ZenFone AR</li>
+</ol>
+<p>どちらも大型のスマートフォン、もといファブレットに近いサイズですね・・・<br>カメラを３つも積んでいるので仕方がないですが、持ち運びや日常利用には結構大きいのではないでしょうか。</p>
+<h2 id="Tangoの導入"><a href="#Tangoの導入" class="headerlink" title="Tangoの導入"></a>Tangoの導入</h2><p>ここからはTangoをUnity環境に導入する手順について説明したいと思います。<br>UnityとAndroidビルドの設定は終わっているとして話を進めます。<br>（近いうちにAndroidのビルド環境の記事を書こうと考えていますので、合わせて読んでいただけると幸いです。）</p>
+<p>手順としては以下の通りになります。</p>
+<ol>
+<li>Tangoの入手</li>
+<li>Tangoのインポート</li>
+<li>Tangoのビルド設定</li>
+</ol>
+<h3 id="1-Tangoの入手"><a href="#1-Tangoの入手" class="headerlink" title="1. Tangoの入手"></a>1. Tangoの入手</h3><p>まず初めにTangoのパッケージを入手しなければいけません。<br>公式サイト右上の<code>デベロッパー</code>から各言語のSDKを選択できます。<br>今回はUnityで作りますのでUnitySDKの詳細から取得しましょう。</p>
+<p><img src="..\..\..\img\tango-unity.jpg"></p>
+<p>詳細から進んでもUnity専用のページではなく似たような画面が出ますので、<code>使ってみる</code>をクリックしてドキュメントに移動します。</p>
+<p><img src="..\..\..\img\tango-howto.png"></p>
+<p>進むと上記のようなページに移動しますが、ここではTangoを動かす際のUnityの設定と必須環境が記載されています。</p>
+<ul>
+<li>API Levelが17以上のAndroid SDK</li>
+<li>Unity5.2.1以降のUnity</li>
+<li>Unity向けのTango SDK</li>
+<li>Google USB Driver</li>
+</ul>
+<p><code>API Lebel...</code>と<code>Tango Unity SDK</code>を除けば、大体はUnityでAndroidアプリをビルドするときに環境が整っていると思います。<br>ページの<code>Tango Unity SDK</code>からダウンロードページに行くことで、ようやくTangoSDKをダウンロードすることができます。</p>
+<p><img src="..\..\..\img\tango-sdk.jpg"></p>
+<p><code>Tango SDK for Unity</code>をクリックして最新のSDKを落としましょう。<br><code>.unitypackage</code>形式でダウンロードされるので、Unityを開いていると自動的に開いているプロジェクトにインポートされます。<br>「このプロジェクトはダメ！」という場合はあらかじめUnityを閉じでおくか、キャンセルしてください。</p>
+<h3 id="2-Tangoのインポート"><a href="#2-Tangoのインポート" class="headerlink" title="2. Tangoのインポート"></a>2. Tangoのインポート</h3><p>TangoSDKを落としましたら、Unityで3Dプロジェクトを新規作成してください。<br>今回はUnity2017.2で作ってみます。（Unityの導入記事もそれで書いていましたので）<br>プロジェクト名は<code>hoge</code>で作成しました。<br>開発画面に来ましたら、さっそく先ほどダウンロードしたパッケージをインポートします。<br><code>Assets &gt; Import Package &gt; Custom Package...</code>から<code>.unitypackage</code>形式のパッケージをインポートできます。</p>
+<p><img src="..\..\..\img\unity-import.jpg"></p>
+<p>パッケージを開くとインポートされるリストが表示されますので、問題がないようでしたら<code>Import</code>をクリックしてインポートしてしまいましょう。<br>インポートが終わると画面下部のAssets以下にいろいろ追加されますので、一度確認しましょう。</p>
+<p><img src="..\..\..\img\unity-tango-files.png"><br>このようになっているはずです。</p>
+<h3 id="3-Tangoのビルド設定"><a href="#3-Tangoのビルド設定" class="headerlink" title="3. Tangoのビルド設定"></a>3. Tangoのビルド設定</h3><p>Tangoのアプリケーションは要件としてAndroid4.2以降でなければいけないので、Androidのビルド設定を変更する必要があります。<br><code>File&gt;Build Settings...</code>からビルド対象の設定をします。<br>まずはPlatformの箇所で<code>Android</code>をダブルクリックか選択してください。（ダブルクリックするとその時点でビルド対象がAndroidに変更されます。）<br>次に<code>Player Settings...</code>をクリックし、ビルドの設定を変更します。<br><code>Other Settings</code>を選択し、<code>Minimum API Level</code>の箇所を<code>Android 4.2 &#39;Jelly Bean&#39; (APK level 17)</code>を選びましょう。</p>
+<p><img src="..\..\..\img\unity-android-setting.jpg"></p>
+<p>またここで<code>Multithread Rendering</code>のチェックを外しておきます。<br>ここにチェックが入っていると、アプリケーションでカメラの映像を正しく表示できなくなるからです。<br>ついでに<code>Package Name</code>の設定も済ませていきましょう。</p>
+<p><img src="..\..\..\img\unity-tango-setting.jpg"></p>
+<p>最後にプラットフォームの変更をしていない場合は<code>Switch Platform</code>をクリックして、ビルド対象をAndroidに変更します。<br>以上で設定は終了ですが、Build Settingsの画面はそのまま開いておいてください。</p>
+<h2 id="Tangoのサンプルを動かす"><a href="#Tangoのサンプルを動かす" class="headerlink" title="Tangoのサンプルを動かす"></a>Tangoのサンプルを動かす</h2><p>実際にTangoのサンプルを動かしてみます。<br><code>Assets &gt; TangoSDK &gt; Examples &gt; Scenes</code>を開き、サンプルのシーンファイルを<code>Build Settings &gt; Scenes In Build</code>に突っ込みます。<br>そのあと<code>DetectTangoCore</code>というシーンを一番上に持っていき、初めにビルドされるようにします。<br>この<code>DetectTangoCore</code>シーンが他のシーンとの切り替えを行っています。</p>
+<p><img src="..\..\..\img\tango-sample-build.jpg"></p>
+<p>この状態で<code>Build &amp; Run</code>しましょう。<br>動くはずです。</p>
+<h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p><font size="5" color="Red">Unity2017.2では動きませんでした！！！</font><br>どうやらUnityのバージョンが新しすぎるのもよくないようです・・・<br>Unity5.5.5でビルドしましたら動きました。<br>このあたりの情報があまり見受けられないので、親切とは言い難いかもしれません。</p>
+<p><img src="..\..\..\img\tango-menu.png"><br><img src="..\..\..\img\tango-tracking.png"></p>
+<!--
+><div style="text-align: right;">
+引用元：[name](https://)
+</div>
+<img src="..\..\..\img\" />
+<font color="White"></font>
+-->
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://debugon.git.io/uncategorized/cj9eocywf000fpsgrewoeyw76/" data-id="cj9eocywf000fpsgrewoeyw76" class="article-share-link">Share</a>
+      
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Linux/cj9eocywh000hpsgrnw5ucnlb/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older Post</strong>
+      <div class="article-nav-title">Windows Subsystem for Linuxを入れてみる</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-about" class="widget-title">About</h3>
+    <div class="widget">
+      
+        <p> Debugon </p>
+      
+      
+        <p> <a href="http://twitter.com/DebugonSan">@DebugonSan</a> </p>
+      
+      </p>
+      
+        <p>  </p>
+      
+      
+        <p>  </p>
+      
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-category" class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/Hexo/">Hexo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/TravisCI/">TravisCI</a><span class="category-list-count">2</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-tag" class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TravisCI/">TravisCI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WSL/">WSL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-tagcloud" class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/GitHub/" style="font-size: 13.33px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 16.67px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/TravisCI/" style="font-size: 13.33px;">TravisCI</a> <a href="/tags/WSL/" style="font-size: 10px;">WSL</a> <a href="/tags/YAML/" style="font-size: 20px;">YAML</a>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-archive" class="widget-title" data-skip-mobile-nav="true">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-recent-posts" class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/uncategorized/cj9eocywf000fpsgrewoeyw76/">Unityで話題のTangoを動かしてみる</a>
+          </li>
+        
+          <li>
+            <a href="/Linux/cj9eocywh000hpsgrnw5ucnlb/">Windows Subsystem for Linuxを入れてみる</a>
+          </li>
+        
+          <li>
+            <a href="/Programming/TravisCI/cj9eocyw30007psgrq9ndkvd1/">TravisCIを利用するお話-言語編-</a>
+          </li>
+        
+          <li>
+            <a href="/Programming/TravisCI/cj9eocywb000bpsgr6mkcaooj/">TravisCIを利用するお話-導入編-</a>
+          </li>
+        
+          <li>
+            <a href="/Programming/Hexo/cj9eocyw6000apsgrlzkvx5yb/">Hexoで作成したブログにサイトマップを設定する話</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Copyrights &copy; 2017 Debugon All Rights Reserved. <br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+      Themed by <a href="https://github.com/kwhrtsk/hexo-theme-ingenuous">Ingenuous</a> (based on <a href="https://github.com/hexojs/hexo-theme-landscape">Landscape</a>).
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.4";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

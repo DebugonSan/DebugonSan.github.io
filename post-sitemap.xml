@@ -7,7 +7,15 @@
     </url>
 
     <url>
-        <loc>http://debugon.git.io/Linux/cj94a2azn000exkgrpxg51iff/</loc>
+        <loc>http://debugon.git.io/uncategorized/cj9eocywf000fpsgrewoeyw76/</loc>
+        <lastmod>2017-10-30T21:06:23.161Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://debugon.git.io/Linux/cj9eocywh000hpsgrnw5ucnlb/</loc>
         <lastmod>2017-10-23T14:28:25.916Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -15,7 +23,7 @@
     </url>
 
     <url>
-        <loc>http://debugon.git.io/Programming/TravisCI/cj94a2azn0006xkgrzjg721v4/</loc>
+        <loc>http://debugon.git.io/Programming/TravisCI/cj9eocyw30007psgrq9ndkvd1/</loc>
         <lastmod>2017-09-25T17:38:26.339Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -23,7 +31,7 @@
     </url>
 
     <url>
-        <loc>http://debugon.git.io/Programming/TravisCI/cj94a2az70002xkgrdm2uts5a/</loc>
+        <loc>http://debugon.git.io/Programming/TravisCI/cj9eocywb000bpsgr6mkcaooj/</loc>
         <lastmod>2017-09-25T17:34:01.287Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -31,7 +39,7 @@
     </url>
 
     <url>
-        <loc>http://debugon.git.io/Programming/Hexo/cj94a2azn000axkgrb19e5uvy/</loc>
+        <loc>http://debugon.git.io/Programming/Hexo/cj9eocyw10006psgrnj3gsm1q/</loc>
         <lastmod>2017-05-31T02:11:48.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -39,7 +47,7 @@
     </url>
 
     <url>
-        <loc>http://debugon.git.io/Programming/Hexo/cj94a2azn000bxkgrodmqexbb/</loc>
+        <loc>http://debugon.git.io/Programming/Hexo/cj9eocyw6000apsgrlzkvx5yb/</loc>
         <lastmod>2017-05-24T07:33:56.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -47,7 +55,7 @@
     </url>
 
     <url>
-        <loc>http://debugon.git.io/Programming/Hexo/cj94a2az70001xkgr5tbwmeh2/</loc>
+        <loc>http://debugon.git.io/Blog/cj9eocyvp0001psgroq55rkqz/</loc>
         <lastmod>2017-05-16T08:27:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -55,7 +63,7 @@
     </url>
 
     <url>
-        <loc>http://debugon.git.io/Blog/cj94a2azn0005xkgr8a9jgn6f/</loc>
+        <loc>http://debugon.git.io/Programming/Hexo/cj9eocyvs0002psgr797wuu9i/</loc>
         <lastmod>2017-05-16T08:27:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -63,7 +71,7 @@
     </url>
 
     <url>
-        <loc>http://debugon.git.io/Programming/Hexo/cj94a2azn0007xkgrwqhds74a/</loc>
+        <loc>http://debugon.git.io/Programming/Hexo/cj9eocyvz0005psgrsx0xzpr1/</loc>
         <lastmod>2017-05-16T08:02:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Windows Subsystem for Linuxを入れてみる | 名前はまだ無い。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="description" content="ついにWindows 10 Fall Creators Updateが正式リリースされ、Windows Subsystem for Linuxが提供されました。InsiderPreview版では既にベータ版を利用できたのですが、リリースの時期も近かったということもあって見送ることにしていました。今回はそのWindows Subsystem for Linux（以下、WSL）を実際にインストールして">
+<meta name="keywords" content="WSL,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows Subsystem for Linuxを入れてみる">
+<meta property="og:url" content="http://debugon.git.io/Linux/cj9eocywh000hpsgrnw5ucnlb/index.html">
+<meta property="og:site_name" content="名前はまだ無い。">
+<meta property="og:description" content="ついにWindows 10 Fall Creators Updateが正式リリースされ、Windows Subsystem for Linuxが提供されました。InsiderPreview版では既にベータ版を利用できたのですが、リリースの時期も近かったということもあって見送ることにしていました。今回はそのWindows Subsystem for Linux（以下、WSL）を実際にインストールして">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://debugon.git.io/img/windows_build.png">
+<meta property="og:image" content="http://debugon.git.io/img/program_list.png">
+<meta property="og:image" content="http://debugon.git.io/img/windows_apps.png">
+<meta property="og:image" content="http://debugon.git.io/img/wsl_ubuntu.png">
+<meta property="og:image" content="http://debugon.git.io/img/wsl_install.png">
+<meta property="og:image" content="http://debugon.git.io/img/apt_update.png">
+<meta property="og:image" content="http://debugon.git.io/img/apt_list.png">
+<meta property="og:updated_time" content="2017-10-23T14:28:25.916Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows Subsystem for Linuxを入れてみる">
+<meta name="twitter:description" content="ついにWindows 10 Fall Creators Updateが正式リリースされ、Windows Subsystem for Linuxが提供されました。InsiderPreview版では既にベータ版を利用できたのですが、リリースの時期も近かったということもあって見送ることにしていました。今回はそのWindows Subsystem for Linux（以下、WSL）を実際にインストールして">
+<meta name="twitter:image" content="http://debugon.git.io/img/windows_build.png">
+<meta name="twitter:creator" content="@DebugonSan">
+  
+    <link rel="alternative" href="/atom.xml" title="名前はまだ無い。" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href='//fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">名前はまだ無い。</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">NO NAME is Debugon&#39;s Memo...</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        
+          <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://debugon.git.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-wsl-setup" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Linux/cj9eocywh000hpsgrnw5ucnlb/" class="article-date">
+  <time datetime="2017-10-17T00:16:04.000Z" itemprop="datePublished">2017-10-17</time>
+</a>
+
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+    
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Windows Subsystem for Linuxを入れてみる
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div class="article-sharing">
+  <ul>
+    <li>
+      <a href="http://b.hatena.ne.jp/entry/http://debugon.git.io/Linux/cj9eocywh000hpsgrnw5ucnlb/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://debugon.git.io/Linux/cj9eocywh000hpsgrnw5ucnlb/" data-via="{{ theme.twitter }}" data-counturl="http://debugon.git.io/Linux/cj9eocywh000hpsgrnw5ucnlb/" >Tweet</a>
+    </li>
+    <li>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://debugon.git.io/Linux/cj9eocywh000hpsgrnw5ucnlb/"></div>
+    </li>
+  </ul>
+</div>
+
+      
+      
+        
+        <p>ついにWindows 10 Fall Creators Updateが正式リリースされ、Windows Subsystem for Linuxが提供されました。<br>InsiderPreview版では既にベータ版を利用できたのですが、リリースの時期も近かったということもあって見送ることにしていました。<br>今回はそのWindows Subsystem for Linux（以下、WSL）を実際にインストールしてみようと思います。</p>
+<h2 id="まずは、Windows10のアップデートを"><a href="#まずは、Windows10のアップデートを" class="headerlink" title="まずは、Windows10のアップデートを"></a>まずは、Windows10のアップデートを</h2><p>早速WSLを入れたいところですが、まずはWindows10のアップデートをしなければいけません。<br>使っているPCのバージョン（ビルド）を確認しましょう。</p>
+<p><code>Windowsの設定＞更新とセキュリティ＞Windows Update＞OSビルド情報</code>と進むことで現在使用しているPCのバージョンを確認することができます。</p>
+<p><img src="..\..\..\img\windows_build.png"></p>
+<p>この<code>OSビルド</code>とい番号が<code>16299</code>以上になっていることを確認してください。<br>もしそうでなければ古いバージョンが入っていますので、Winodws Updateに戻って更新しましょう。</p>
+<h2 id="WSLの有効化"><a href="#WSLの有効化" class="headerlink" title="WSLの有効化"></a>WSLの有効化</h2><p>現在WSLはコマンドプロンプトとストア版から利用することができます。<br>しかし、それらを利用する前に<code>Windowsの機能の有効化</code>からWSLの機能を有効化し追加してあげる必要があります。</p>
+<p><code>Windowsの設定＞アプリ＞アプリと機能＞プログラムと機能</code>から従来のプログラムの追加と削除の画面を開くことができます。</p>
+<p><img src="..\..\..\img\program_list.png"></p>
+<p>ここからさらに<code>Windowsの機能の有効化または無効化</code>を開いて、WSLを有効化します。</p>
+<p><img src="..\..\..\img\windows_apps.png"></p>
+<p>OKをクリックすると、必要なツールのインストールが始まりますので気長に待ちましょう。<br>私はそのままWSLを起動しましたが、終わったら念のために再起動を掛けたほうがいいかもしれません。</p>
+<h2 id="ストア版Ubuntuの入手"><a href="#ストア版Ubuntuの入手" class="headerlink" title="ストア版Ubuntuの入手"></a>ストア版Ubuntuの入手</h2><p>当初bashコマンドでのインストールを知らなかったため、ストア経由でWSLをインストールしました。<br>Windowsストアを開き<code>Ubuntu</code>で検索するとカノニカル社が提供しているUbutuアプリがあると思いますので、こちらをインストールすることでUbuntu版のWSLを使用することができるようになります。<br>もしインストールできないようであれば、Windowsのバージョンが古いと思いますのでアップデートを確認してみてください。</p>
+<p><img src="..\..\..\img\wsl_ubuntu.png"></p>
+<h2 id="Windows-Subsystem-for-Linuxの起動"><a href="#Windows-Subsystem-for-Linuxの起動" class="headerlink" title="Windows Subsystem for Linuxの起動"></a>Windows Subsystem for Linuxの起動</h2><p>早速、インストールされたアプリを起動してみましょう。<br>設定が済んでいれば、Ubuntuのインストールを促されるはずです。<br>もしエラーメッセージが出ているようであれば、WSLの有効化が済んでいないと思われますのでもう一度見直してみてください。</p>
+<p>Ubuntuのインストールの際に</p>
+<ul>
+<li>ユーザ名</li>
+<li>パスワード</li>
+</ul>
+<p>を要求されますが、これは使用中のWindowsのパスワードではなく新たにUbuntuに設定するものなので同一にする必要はありません。</p>
+<p><img src="..\..\..\img\wsl_install.png"></p>
+<p>インストールが完了すればWSLの導入は終了となります。</p>
+<h2 id="少し弄ってみた"><a href="#少し弄ってみた" class="headerlink" title="少し弄ってみた"></a>少し弄ってみた</h2><p><code>sudo apt update</code>でアップデートをやってみます。<br>結構アップデート対象が多くてびっくりしました。</p>
+<p><img src="..\..\..\img\apt_update.png"></p>
+<p>終わると<code>apt list --upgradable</code>を実行しろと言われたんで、実行して更新されたものを確認してみました。</p>
+<p><img src="..\..\..\img\apt_list.png"></p>
+<p>リストを見てみると最初からgccやgitなどが突っ込まれていましたが、気づかないで普通にアップデートしちゃいました・・・</p>
+<h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>WSLはLinuxやUNIXのようにターミナルをよく使ってる方なら非常に魅力的なのではないでしょうか。<br>私はどちらかというとUbuntu自体に興味があったところからインストールしてみようとなった口なので何とも言えませんが、いまだ勉強不足なところがありますので当分はGit Bashかなと思っています。</p>
+<font color="White">ついにUbuntuがWindowsに入ったぜえええええええええええええええええ！！！！</font><br><font color="White">といっても、UbuntuのロゴがだいしゅきマンなのでいつかサブPCにUbuntuを突っ込んで弄りまくりたいですねー（ぶぃ</font>
+
+
+<!--
+><div style="text-align: right;">
+引用元：[name](https://)
+</div>
+<img src="..\..\..\img\" />
+<font color="White"></font>
+-->
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://debugon.git.io/Linux/cj9eocywh000hpsgrnw5ucnlb/" data-id="cj9eocywh000hpsgrnw5ucnlb" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WSL/">WSL</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/uncategorized/cj9eocywf000fpsgrewoeyw76/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer Post</strong>
+      <div class="article-nav-title">
+        
+          Unityで話題のTangoを動かしてみる
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Programming/TravisCI/cj9eocyw30007psgrq9ndkvd1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older Post</strong>
+      <div class="article-nav-title">TravisCIを利用するお話-言語編-</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-about" class="widget-title">About</h3>
+    <div class="widget">
+      
+        <p> Debugon </p>
+      
+      
+        <p> <a href="http://twitter.com/DebugonSan">@DebugonSan</a> </p>
+      
+      </p>
+      
+        <p>  </p>
+      
+      
+        <p>  </p>
+      
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-category" class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/Hexo/">Hexo</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/TravisCI/">TravisCI</a><span class="category-list-count">2</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-tag" class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TravisCI/">TravisCI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WSL/">WSL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-tagcloud" class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/GitHub/" style="font-size: 13.33px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 16.67px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/TravisCI/" style="font-size: 13.33px;">TravisCI</a> <a href="/tags/WSL/" style="font-size: 10px;">WSL</a> <a href="/tags/YAML/" style="font-size: 20px;">YAML</a>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-archive" class="widget-title" data-skip-mobile-nav="true">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 id="widget-title-recent-posts" class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/uncategorized/cj9eocywf000fpsgrewoeyw76/">Unityで話題のTangoを動かしてみる</a>
+          </li>
+        
+          <li>
+            <a href="/Linux/cj9eocywh000hpsgrnw5ucnlb/">Windows Subsystem for Linuxを入れてみる</a>
+          </li>
+        
+          <li>
+            <a href="/Programming/TravisCI/cj9eocyw30007psgrq9ndkvd1/">TravisCIを利用するお話-言語編-</a>
+          </li>
+        
+          <li>
+            <a href="/Programming/TravisCI/cj9eocywb000bpsgr6mkcaooj/">TravisCIを利用するお話-導入編-</a>
+          </li>
+        
+          <li>
+            <a href="/Programming/Hexo/cj9eocyw6000apsgrlzkvx5yb/">Hexoで作成したブログにサイトマップを設定する話</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Copyrights &copy; 2017 Debugon All Rights Reserved. <br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+      Themed by <a href="https://github.com/kwhrtsk/hexo-theme-ingenuous">Ingenuous</a> (based on <a href="https://github.com/hexojs/hexo-theme-landscape">Landscape</a>).
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.4";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
