@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://debugon.git.io/"/>
-  <updated>2017-12-18T21:06:40.383Z</updated>
+  <updated>2017-12-18T21:09:27.429Z</updated>
   <id>http://debugon.git.io/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>Google版ARKit、ARCoreに手を出してみる</title>
-    <link href="http://debugon.git.io/uncategorized/cjbcoy0aw0007qogrcai7crrw/"/>
-    <id>http://debugon.git.io/uncategorized/cjbcoy0aw0007qogrcai7crrw/</id>
+    <link href="http://debugon.git.io/Programming/Android/Unity/cjbcoy0aw0007qogrcai7crrw/"/>
+    <id>http://debugon.git.io/Programming/Android/Unity/cjbcoy0aw0007qogrcai7crrw/</id>
     <published>2017-12-18T16:13:02.000Z</published>
-    <updated>2017-12-18T21:06:40.383Z</updated>
+    <updated>2017-12-18T21:09:27.429Z</updated>
     
     <content type="html"><![CDATA[<p>久しぶりの更新になります！<br>少し時間を空けるつもりが、思った以上の時間になってしまうなんてことなってしまいました・・・</p><p>つい先日、Googleより<a href="https://twitter.com/projecttango/status/941730801791549440" target="_blank">Tangoサービスの終了</a>されました。</p><p><blockquote class="twitter-tweet" data-lang="ja"><p lang="en" dir="ltr">We’re turning down support for Tango on March 1, 2018. Thank you to our incredible community of developers who made such progress with Tango over the last three years. We look forward to continuing the journey with you on ARCore. <a href="https://t.co/aYiSUkgyie" target="_blank" rel="external">https://t.co/aYiSUkgyie</a></p>&mdash; Tango (@projecttango) <a href="https://twitter.com/projecttango/status/941730801791549440?ref_src=twsrc%5Etfw" target="_blank" rel="external">2017年12月15日</a></blockquote></p><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><p>正確には前々から終了の告知はなされていたのですが、今回の発表では2018年3月と具体的な日程を提示してきました。<br>今後の開発は<code>ARCore</code>に一本化していくとのことです。</p><p>今回はTangoの終了のお知らせに合わせて発表された、ARCoreのDevelopersPreview2を実機に入れてみたいと思います。（本当はTangoの終了がPreview2の発表に合わせて行われたのですが・・・）</p><h2 id="ARCoreとは"><a href="#ARCoreとは" class="headerlink" title="ARCoreとは"></a>ARCoreとは</h2><p><img src="..\..\..\img\arcore-logo.jpg"><br>ARCoreはApple社のARkitの対抗馬としてGoogleが発表したものであり、スマートフォンの背面カメラ<code>1つ</code>のみを使用してAR体験を提供するSDKです。<br>Tangoと違い<code>3つのカメラ</code>や<code>特殊なセンサー</code>といったハードウェアが不要で、現行のどのスマートフォンでも利用可能というメリットがあります。<br>その半面Tangoよりも空間の認識能力が低く、赤外線による空間深度を取得できないといったデメリットもありますが、ついにTango自体がサポートを終了してしまうこととなります。</p><h3 id="対応端末"><a href="#対応端末" class="headerlink" title="対応端末"></a>対応端末</h3><p><img src="..\..\..\img\arcore-device.png"></p><p>ARCoreは現在開発者向けのSDKがリリースされていますが、対応機種はGoogleが販売をしているGoogle Pixelシリーズと、Samsungが販売しているGalaxy S8のみとなっています。<br>日本国内でPixelシリーズは一般販売されていないのでGalaxy S8を使うか、Pixelを個人輸入するほかありません。</p><h3 id="言語"><a href="#言語" class="headerlink" title="言語"></a>言語</h3><p><img src="..\..\..\img\arcore-lang.png"></p><p>ARCoreはJava, Unity, UnrealEnginで使用でき、Tangoの導入と同じようなガイドが設けられています。<br>今回のアプリも<code>Unity</code>で作っていきます。</p><h2 id="ARCoreを試してみる"><a href="#ARCoreを試してみる" class="headerlink" title="ARCoreを試してみる"></a>ARCoreを試してみる</h2><p>長々とARCoreについて書いたので、そろそろARCoreを動かしてみたいと思います。<br>ちなみにAndroidの設定もろもろは本筋から外れるので省略します。</p><h3 id="開発環境"><a href="#開発環境" class="headerlink" title="開発環境"></a>開発環境</h3><ul><li>Google Pixel Android8.1</li><li>Unity 2017.3</li><li>ARCore Developers Preview 2</li></ul><h3 id="SDKの入手"><a href="#SDKの入手" class="headerlink" title="SDKの入手"></a>SDKの入手</h3><p>まずはARCoreの<a href="https://developers.google.com/ar/" target="_blank">公式サイト</a>よりUnity向けのARCoreSDKを手に入れましょう。<br>Unityの下にある<code>GET STARTED</code>からガイドページに行くことができます。<br>この記事の執筆時にはUnity 2017.3以上のバージョンが推奨されていました。</p><p><img src="..\..\..\img\arcore-sdk.png"></p><p><code>SDK for Unity</code>をクリックし<code>.unitypackage</code>形式でダウンロードします。<br>次にこのSDKをUnityで作成したプロジェクトにインポートしましょう。</p><h3 id="プロジェクトの作成"><a href="#プロジェクトの作成" class="headerlink" title="プロジェクトの作成"></a>プロジェクトの作成</h3><p>まずは適当にUnity3Dでプロジェクトを作成します。<br>今回はARCoreDevelopersPreview2という名前にしました。<br>作成後、先ほどダウンロードしたパッケージを<code>Assets &gt; Import Package &gt; Custom Package</code>からインポートしましょう。<br>選択後、何をインポートするか聞かれますが、問題はないと思いますので<code>Import</code>をクリックします。</p><p><img src="..\..\..\img\arcore-import.png"><br>(キャプチャし忘れちゃって、追加された後になってたりします・・・)</p><p>これでUnityのプロジェクトにARCoreのSDKを入れることができました。</p><h3 id="プロジェクトのビルド設定"><a href="#プロジェクトのビルド設定" class="headerlink" title="プロジェクトのビルド設定"></a>プロジェクトのビルド設定</h3><p>忘れないうちにビルド設定を済ませてしまいましょう。<br><code>File&gt;Build Settings...</code>からビルド設定画面を開きます。<br>まずはプラットフォームをAndroidに変更します。<br>Androidを選択し<code>Switch Platform</code>をクリックし、ビルド対象をAndroidに設定します。</p><p><img src="..\..\..\img\arcore-platform.png"></p><p>次に<code>Player Settings...</code>をクリックし、設定画面を開きます。<br>ARCoreを動作させるために以下のような設定をします。<br><code>Other Settings</code>タブから</p><ul><li><code>Multithreaded Rendering</code>のチェックを外す</li><li>Minimum API LevelはAndroid 7.0以上を選択</li><li><del>Target API LevelはAndroid 7.0 か 7.1を選択</del></li><li><font color="Red">Target API Levelは実機のバージョンのSDKをインストールし<code>Automatic</code>に設定</font></li></ul><p><code>XR Settings</code>タブから</p><ul><li><code>ARCore Supported</code>にチェック</li></ul><p>このときAndroid 7.0以上を選択できない場合は、Android SDKからAPI Level 24以上をダウンロードしていないと思いますので一度確認してみてください。</p><p>最後にARCoreのサンプルシーンを読み込むように設定します。<br><code>Assets &gt; GoogleARCore &gt; Examples &gt; HelloAR &gt; Scenes</code>を開き、<code>HelloAR.unity</code>を<code>Scenes In Build</code>にドラッグアンドドロップします。</p><p><img src="..\..\..\img\arcore-examples.png"></p><p>これにてUnity側のプロジェクトの作成・設定は終了となります。<br>実機にインストール・・・と行きたいところですが、端末側にも準備が必要なのでまだ行いません。</p><h2 id="ARCoreシステムアプリをインストールする"><a href="#ARCoreシステムアプリをインストールする" class="headerlink" title="ARCoreシステムアプリをインストールする"></a>ARCoreシステムアプリをインストールする</h2><p>ARCoreを動かす端末側にもARCoreのアプリケーションを導入する必要があります。<br>ARCoreシステムアプリは実機のブラウザからダウンロードしインストールするか、adbコマンドを用いて実機にインストールするかして導入しましょう。</p><p><img src="..\..\..\img\arcore-apk.png"></p><p>今回は前者の方法ででさくっとインストールしました。<br>特に権限の要求とかはなかったと思います。</p><p>これでようやく動作させる環境が整いました。<br>最後にUnityに戻り、ビルドしましょう！</p><h2 id="いざビルド"><a href="#いざビルド" class="headerlink" title="いざビルド"></a>いざビルド</h2><p><code>Build Settings</code>から<code>Build And Run</code>をクリックし、任意の名前の<code>.apk</code>で保存します。<br>うまくいけばビルドが通るはずです。</p><p><img src="..\..\..\img\arcore-error.png"><br>(しまった、PixelってAndrodi 8.1だった・・・)<br>急いでダウンロードします・・・</p><p><img src="..\..\..\img\android-update.png"></p><p>Target API Levelに7.1以上が表示されないので<code>Automatic</code>に変更してビルドします。</p><p><img src="..\..\..\img\arcore-success.png"></p><p>無事にインストールできたようです。</p><h2 id="ARCoreを動かす"><a href="#ARCoreを動かす" class="headerlink" title="ARCoreを動かす"></a>ARCoreを動かす</h2><p>インストールが終わると勝手に起動すると思いますが、起動しなかった場合はインストールアプリの一覧から起動してみてください。<br>私は起動時にカメラの権限だけ求められましたので、許可しています。</p><p><img src="..\..\..\img\arcore-test.png"><br>(適当に手元で動かしたものをスクショしてみました)</p><p>起動すると青い点が点々と現れ平面のスキャンが始まり、平面だと認識すると画面のような線が表示されます。<br>ドロイド君はタップすることでその位置に表示することができました。</p><h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p>お疲れさまでした！<br>ARKitに対抗してARCoreを出したと一時期は騒がれていましたが、Tangoでできていたことが従来のスマートフォンでもできるようになるというのはすごいと感じます。<br>ARKitはiPhoneの開発環境を持ち合わせていないので試すのは難しいのですが、噂だとARKitよりも平面の検出スピードは速いと聞きます。<br>ARCoreはそろそろ正式リリースされるとのことなので、とても期待が高まりますね！</p><!--<a href="url-hogehoge" target="_blank">URL名</a><div style="text-align: right;">引用元：[name](https://)</div><img src="..\..\..\img\" /><font color="White"></font>-->]]></content>
     
@@ -35,15 +35,27 @@
     
     </summary>
     
+      <category term="Programming" scheme="http://debugon.git.io/categories/Programming/"/>
+    
+      <category term="Android" scheme="http://debugon.git.io/categories/Programming/Android/"/>
+    
+      <category term="Unity" scheme="http://debugon.git.io/categories/Programming/Android/Unity/"/>
+    
+    
+      <category term="Android" scheme="http://debugon.git.io/tags/Android/"/>
+    
+      <category term="Unity" scheme="http://debugon.git.io/tags/Unity/"/>
+    
+      <category term="ARCore" scheme="http://debugon.git.io/tags/ARCore/"/>
     
   </entry>
   
   <entry>
     <title>Unityで話題のTangoを動かしてみる</title>
-    <link href="http://debugon.git.io/uncategorized/cjbcoy0ba000fqogr4ev3nedg/"/>
-    <id>http://debugon.git.io/uncategorized/cjbcoy0ba000fqogr4ev3nedg/</id>
+    <link href="http://debugon.git.io/Programming/Android/Unity/cjbcoy0ba000fqogr4ev3nedg/"/>
+    <id>http://debugon.git.io/Programming/Android/Unity/cjbcoy0ba000fqogr4ev3nedg/</id>
     <published>2017-10-30T18:41:37.000Z</published>
-    <updated>2017-10-30T21:06:23.161Z</updated>
+    <updated>2017-12-18T21:09:27.434Z</updated>
     
     <content type="html"><![CDATA[<p><img src="..\..\..\img\tango-home.png"></p><p>つい最近CEATECのお話を聞く機会があり、ARやMR（MixedReality）に力を入れている企業が多いという話をされていました。<br>特にGoogleとMicrosoftが結構プッシュしているようで、GoogleはTangoというAR技術を開発し、MicrosoftはOSレベルでMRの開発キットを機能として盛り込むなどといった動きを見せています。</p><p>私もGoogleTango対応の端末をお借りする機会があったので、試しにUnityでサンプルを動かしてみたいと思います。</p><h2 id="Tangoについて"><a href="#Tangoについて" class="headerlink" title="Tangoについて"></a>Tangoについて</h2><p>Googleの公開しているTangoは3つのカメラと赤外線を用いることで非常に高精度な空間認識を持ち味としているようで、既存の技術とは大きく違って空間の深度というものを採れるようです。<br>赤外線でレイキャストをしているみたいなんですが、詳しくはGoogleが公開しているTangoのPVをご覧になってください。</p><h3 id="対応機種について"><a href="#対応機種について" class="headerlink" title="対応機種について"></a>対応機種について</h3><p><img src="..\..\..\img\tango-device.png"></p><p>現在GoogleTangoに対応している端末は２種のみですが、CEATECを終えた今はTangoの知名度も上がったと思いますので今後に期待しましょう。</p><ol><li>Lenovo Phab 2 Pro</li><li>ASUS ZenFone AR</li></ol><p>どちらも大型のスマートフォン、もといファブレットに近いサイズですね・・・<br>カメラを３つも積んでいるので仕方がないですが、持ち運びや日常利用には結構大きいのではないでしょうか。</p><h2 id="Tangoの導入"><a href="#Tangoの導入" class="headerlink" title="Tangoの導入"></a>Tangoの導入</h2><p>ここからはTangoをUnity環境に導入する手順について説明したいと思います。<br>UnityとAndroidビルドの設定は終わっているとして話を進めます。<br>（近いうちにAndroidのビルド環境の記事を書こうと考えていますので、合わせて読んでいただけると幸いです。）</p><p>手順としては以下の通りになります。</p><ol><li>Tangoの入手</li><li>Tangoのインポート</li><li>Tangoのビルド設定</li></ol><h3 id="1-Tangoの入手"><a href="#1-Tangoの入手" class="headerlink" title="1. Tangoの入手"></a>1. Tangoの入手</h3><p>まず初めにTangoのパッケージを入手しなければいけません。<br>公式サイト右上の<code>デベロッパー</code>から各言語のSDKを選択できます。<br>今回はUnityで作りますのでUnitySDKの詳細から取得しましょう。</p><p><img src="..\..\..\img\tango-unity.jpg"></p><p>詳細から進んでもUnity専用のページではなく似たような画面が出ますので、<code>使ってみる</code>をクリックしてドキュメントに移動します。</p><p><img src="..\..\..\img\tango-howto.png"></p><p>進むと上記のようなページに移動しますが、ここではTangoを動かす際のUnityの設定と必須環境が記載されています。</p><ul><li>API Levelが17以上のAndroid SDK</li><li>Unity5.2.1以降のUnity</li><li>Unity向けのTango SDK</li><li>Google USB Driver</li></ul><p><code>API Lebel...</code>と<code>Tango Unity SDK</code>を除けば、大体はUnityでAndroidアプリをビルドするときに環境が整っていると思います。<br>ページの<code>Tango Unity SDK</code>からダウンロードページに行くことで、ようやくTangoSDKをダウンロードすることができます。</p><p><img src="..\..\..\img\tango-sdk.jpg"></p><p><code>Tango SDK for Unity</code>をクリックして最新のSDKを落としましょう。<br><code>.unitypackage</code>形式でダウンロードされるので、Unityを開いていると自動的に開いているプロジェクトにインポートされます。<br>「このプロジェクトはダメ！」という場合はあらかじめUnityを閉じでおくか、キャンセルしてください。</p><h3 id="2-Tangoのインポート"><a href="#2-Tangoのインポート" class="headerlink" title="2. Tangoのインポート"></a>2. Tangoのインポート</h3><p>TangoSDKを落としましたら、Unityで3Dプロジェクトを新規作成してください。<br>今回はUnity2017.2で作ってみます。（Unityの導入記事もそれで書いていましたので）<br>プロジェクト名は<code>hoge</code>で作成しました。<br>開発画面に来ましたら、さっそく先ほどダウンロードしたパッケージをインポートします。<br><code>Assets &gt; Import Package &gt; Custom Package...</code>から<code>.unitypackage</code>形式のパッケージをインポートできます。</p><p><img src="..\..\..\img\unity-import.jpg"></p><p>パッケージを開くとインポートされるリストが表示されますので、問題がないようでしたら<code>Import</code>をクリックしてインポートしてしまいましょう。<br>インポートが終わると画面下部のAssets以下にいろいろ追加されますので、一度確認しましょう。</p><p><img src="..\..\..\img\unity-tango-files.png"><br>このようになっているはずです。</p><h3 id="3-Tangoのビルド設定"><a href="#3-Tangoのビルド設定" class="headerlink" title="3. Tangoのビルド設定"></a>3. Tangoのビルド設定</h3><p>Tangoのアプリケーションは要件としてAndroid4.2以降でなければいけないので、Androidのビルド設定を変更する必要があります。<br><code>File&gt;Build Settings...</code>からビルド対象の設定をします。<br>まずはPlatformの箇所で<code>Android</code>をダブルクリックか選択してください。（ダブルクリックするとその時点でビルド対象がAndroidに変更されます。）<br>次に<code>Player Settings...</code>をクリックし、ビルドの設定を変更します。<br><code>Other Settings</code>を選択し、<code>Minimum API Level</code>の箇所を<code>Android 4.2 &#39;Jelly Bean&#39; (APK level 17)</code>を選びましょう。</p><p><img src="..\..\..\img\unity-android-setting.jpg"></p><p>またここで<code>Multithread Rendering</code>のチェックを外しておきます。<br>ここにチェックが入っていると、アプリケーションでカメラの映像を正しく表示できなくなるからです。<br>ついでに<code>Package Name</code>の設定も済ませていきましょう。</p><p><img src="..\..\..\img\unity-tango-setting.jpg"></p><p>最後にプラットフォームの変更をしていない場合は<code>Switch Platform</code>をクリックして、ビルド対象をAndroidに変更します。<br>以上で設定は終了ですが、Build Settingsの画面はそのまま開いておいてください。</p><h2 id="Tangoのサンプルを動かす"><a href="#Tangoのサンプルを動かす" class="headerlink" title="Tangoのサンプルを動かす"></a>Tangoのサンプルを動かす</h2><p>実際にTangoのサンプルを動かしてみます。<br><code>Assets &gt; TangoSDK &gt; Examples &gt; Scenes</code>を開き、サンプルのシーンファイルを<code>Build Settings &gt; Scenes In Build</code>に突っ込みます。<br>そのあと<code>DetectTangoCore</code>というシーンを一番上に持っていき、初めにビルドされるようにします。<br>この<code>DetectTangoCore</code>シーンが他のシーンとの切り替えを行っています。</p><p><img src="..\..\..\img\tango-sample-build.jpg"></p><p>この状態で<code>Build &amp; Run</code>しましょう。<br>動くはずです。</p><h2 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h2><p><font size="5" color="Red">Unity2017.2では動きませんでした！！！</font><br>どうやらUnityのバージョンが新しすぎるのもよくないようです・・・<br>Unity5.5.5でビルドしましたら動きました。<br>このあたりの情報があまり見受けられないので、親切とは言い難いかもしれません。</p><p><img src="..\..\..\img\tango-menu.png"><br><img src="..\..\..\img\tango-tracking.png"></p><!--><div style="text-align: right;">引用元：[name](https://)</div><img src="..\..\..\img\" /><font color="White"></font>-->]]></content>
     
@@ -57,6 +69,18 @@
     
     </summary>
     
+      <category term="Programming" scheme="http://debugon.git.io/categories/Programming/"/>
+    
+      <category term="Android" scheme="http://debugon.git.io/categories/Programming/Android/"/>
+    
+      <category term="Unity" scheme="http://debugon.git.io/categories/Programming/Android/Unity/"/>
+    
+    
+      <category term="Android" scheme="http://debugon.git.io/tags/Android/"/>
+    
+      <category term="Unity" scheme="http://debugon.git.io/tags/Unity/"/>
+    
+      <category term="Tango" scheme="http://debugon.git.io/tags/Tango/"/>
     
   </entry>
   
